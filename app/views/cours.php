@@ -64,8 +64,19 @@ var_dump($result);
                             class="text-gray-900 hover:text-bg-blue-600 transition-colors">Features</a>
                         <a href="./pages/features.php"
                             class="text-gray-900 hover:text-bg-blue-600 transition-colors">Blog</a>
-                        <a href="./pages/contact.php"
-                            class="text-gray-900 hover:text-bg-blue-600 transition-colors">Help Center</a>
+                        <?php
+                        if (!isset($_SESSION["user"])) {
+                            ?>
+                            <a href="./pages/contact.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">My
+                                Courses</a>
+                            <?php
+                        } else {
+                            ?>
+                            <a href="./pages/contact.php"
+                                class="text-gray-900 hover:text-bg-blue-600 transition-colors">Help Center</a>
+                            <?php
+                        }
+                        ?>
                     </nav>
 
                     <?php
