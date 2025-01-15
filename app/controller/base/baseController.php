@@ -63,9 +63,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if ($userData) {
                 $_SESSION["user"] = $userData;
                 var_dump($_SESSION["user"]);
-                echo "Connexion réussie.";
+            $role= $_SESSION["user"]["role"];
+             switch ($role){
+                case 'admin':
+                header("Location: ../../user/admin/dashbord.php");
+                break;
+                case 'student':
                 header("Location: ../../../index.php");
-                exit();
+                break;
+                case 'teacher':
+                    header("Location: ../../../index.php");  
+                    break;
+             }
 
             } else {
 

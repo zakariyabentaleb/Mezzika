@@ -1,6 +1,5 @@
 <?php
 require_once('../controller/impl/Courcontrollerimpl.php');
-
 $contrl = new Courcontrollerimpl();
 $result = $contrl->fetchCours();
 var_dump($result);
