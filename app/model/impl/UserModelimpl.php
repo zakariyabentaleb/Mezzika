@@ -1,6 +1,6 @@
 <?php
-require_once 'C:/Users/youco/Desktop/iLearN/app/model/UserModel.php';
-require_once 'C:/Users/youco/Desktop/iLearN/app/config/Database.php';
+require_once 'C:/Users/youco/Desktop/iLearN-platform/app/model/UserModel.php';
+require_once 'C:/Users/youco/Desktop/iLearN-platform/app/config/Database.php';
 
 class UserModelimpl implements UserModel
 {
@@ -90,6 +90,10 @@ class UserModelimpl implements UserModel
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_OBJ);
         return (int)$result->usersCount;
+    }
+    public function logout (): void{
+            session_destroy();
+            session_unset();
     }
 
 

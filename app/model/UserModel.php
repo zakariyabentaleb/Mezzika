@@ -10,5 +10,7 @@ interface UserModel
     public function verifyUser(User $user): array|bool;
 
     public function countUser(): int;
+
+    public function logout (): void;
 }
 ?>

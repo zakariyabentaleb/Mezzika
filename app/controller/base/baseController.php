@@ -4,7 +4,8 @@ require_once "../impl/UserControllerimpl.php";
 require_once "../../entities/User.php";
 require_once "../../entities/Student.php";
 require_once "../../entities/Teacher.php";
-require_once 'C:\Users\youco\Desktop\iLearN\app\enums\Role.php';
+require_once 'C:\Users\youco\Desktop\iLearN-platform\app\enums\Role.php';
+
 session_start();
 $userController = new UserControllerimpl();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -75,11 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
     
-    if (isset($_POST["logout"])) {
-        session_destroy();
-        header('location: ../../user/login');
-    }
-
     if (isset($_POST["deleteStudent"])) {
     }
 
