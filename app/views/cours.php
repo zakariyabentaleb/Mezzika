@@ -1,7 +1,7 @@
 <?php
 require_once('../controller/impl/Courcontrollerimpl.php');
-$contrl=new Courcontrollerimpl();
-$result=$contrl->fetchCours();
+$contrl = new Courcontrollerimpl();
+$result = $contrl->fetchCours();
 var_dump($result);
 ?>
 <!DOCTYPE html>
@@ -17,7 +17,7 @@ var_dump($result);
     <script src="./assets/scripts/main.js" defer></script>
     <style>
         .text-gradient {
-            background: linear-gradient(to right,rgb(70, 18, 242),rgb(51, 16, 250));
+            background: linear-gradient(to right, rgb(70, 18, 242), rgb(51, 16, 250));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -51,15 +51,21 @@ var_dump($result);
             <div class="container mx-auto px-4">
                 <div class="flex items-center justify-between py-4">
                     <a href="./index.php">
-                    <img src="./assets/images/Youdemy_Logo.svg" alt="Youdemy Platform">
+                        <img src="./assets/images/Youdemy_Logo.svg" alt="Youdemy Platform">
                     </a>
                     <nav class="hidden md:flex items-center space-x-6">
-                        <a href="../../index.php" class="text-blue-600 font-bold  hover:text-bg-blue-600 transition-colors">Home</a>
-                        <a href="/app/views/cours.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">Courses</a>
-                        <a href="./pages/pricing.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">Pricing</a>
-                        <a href="./pages/features.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">Features</a>
-                        <a href="./pages/features.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">Blog</a>
-                        <a href="./pages/contact.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">Help Center</a>
+                        <a href="../../index.php"
+                            class="text-blue-600 font-bold  hover:text-bg-blue-600 transition-colors">Home</a>
+                        <a href="/app/views/cours.php"
+                            class="text-gray-900 hover:text-bg-blue-600 transition-colors">Courses</a>
+                        <a href="./pages/pricing.php"
+                            class="text-gray-900 hover:text-bg-blue-600 transition-colors">Pricing</a>
+                        <a href="./pages/features.php"
+                            class="text-gray-900 hover:text-bg-blue-600 transition-colors">Features</a>
+                        <a href="./pages/features.php"
+                            class="text-gray-900 hover:text-bg-blue-600 transition-colors">Blog</a>
+                        <a href="./pages/contact.php"
+                            class="text-gray-900 hover:text-bg-blue-600 transition-colors">Help Center</a>
                     </nav>
 
                     <?php
@@ -88,16 +94,16 @@ var_dump($result);
                         ?>
 
                         <div class="flex items-center space-x-4">
-                            <button
-                                class="p-2 px-4 bg-blue-600 text-white rounded-full hover:bg-white hover:text-blue-600 hover:border hover:border-blue-600 transition-colors">
-                                <a href="../app/user/login.php">log out</a>
-                            </button>
-
-                            <button
-                                class="p-2 px-4 border border-blue-600 text-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition-colors">
-                                <a href="../app/user/register.php"><?php echo $_SESSION['user']['nom'] ?></a>
-                            </button>
-
+                            <form action="\app\controller\base\baseController.php" method="POST">
+                                <button type="submit" name="logout"
+                                    class="p-2 px-4 bg-blue-600 text-white rounded-full hover:bg-white hover:text-blue-600 hover:border hover:border-blue-600 transition-colors">
+                                    Log out
+                                </button>
+                                <button
+                                    class="p-2 px-4 border border-blue-600 text-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition-colors">
+                                    <a href="../app/user/register.php"><?php echo $_SESSION['user']['nom'] ?></a>
+                                </button>
+                            </form>
 
                             <button class="p-2 hover:text-bg-blue-600 transition-colors">
                                 <i class="ri-menu-4-fill text-2xl"></i>
@@ -107,23 +113,29 @@ var_dump($result);
                     <?php
                     }
                     ?>
-                </div>
-
-                <!-- Mobile Menu-->
-                <div id="mobile-menu" class="hidden md:hidden py-4">
-                    <nav class="flex flex-col space-y-4">
-                    <a href="../index.php" class="text-blue-600 font-bold  hover:text-bg-blue-600 transition-colors">Home</a>
-                        <a href="./pages/courses.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">Courses</a>
-                        <a href="./pages/pricing.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">Pricing</a>
-                        <a href="./pages/features.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">Features</a>
-                        <a href="./pages/features.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">Blog</a>
-                        <a href="./pages/contact.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">Help Center</a>
-                    </nav>
-                </div>
             </div>
-        </header>
 
-        <!-- Hero Section -->
+            <!-- Mobile Menu-->
+            <div id="mobile-menu" class="hidden md:hidden py-4">
+                <nav class="flex flex-col space-y-4">
+                    <a href="../index.php"
+                        class="text-blue-600 font-bold  hover:text-bg-blue-600 transition-colors">Home</a>
+                    <a href="./pages/courses.php"
+                        class="text-gray-900 hover:text-bg-blue-600 transition-colors">Courses</a>
+                    <a href="./pages/pricing.php"
+                        class="text-gray-900 hover:text-bg-blue-600 transition-colors">Pricing</a>
+                    <a href="./pages/features.php"
+                        class="text-gray-900 hover:text-bg-blue-600 transition-colors">Features</a>
+                    <a href="./pages/features.php"
+                        class="text-gray-900 hover:text-bg-blue-600 transition-colors">Blog</a>
+                    <a href="./pages/contact.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">Help
+                        Center</a>
+                </nav>
+            </div>
+    </div>
+    </header>
+
+    <!-- Hero Section -->
     </div>
     <!-- Courses Grid Section -->
 
@@ -134,47 +146,48 @@ var_dump($result);
                     class="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-600">Courses</span>
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                 <?php 
-                     foreach ($result as $cour ) {
+                <?php
+                foreach ($result as $cour) {
 
 
-                    
-                 ?>
-                <div
-                    class="bg-white border border-blue-600 rounded-lg shadow-md p-4 hover:scale-105 transition-transform">
-                    <img src="/assets/images/cover4.png" alt="Course Image" class="rounded-t-lg w-full">
-                    <div class="py-3">
-                        <p class="text-sm text-gray-500 flex items-center space-x-2">
-                            <span><i class="ri-calendar-line"></i> 20 Nov, 2023</span>
-                            <span><i class="ri-file-list-line"></i> 3 Curriculum</span>
-                            <span><i class="ri-group-line"></i> 5 Students</span>
-                        </p>
-                        <h3 class="text-lg font-semibold text-gray-800 mt-2"></h3>
-                        <p class="text-gray-600 text-sm mt-1">
-                        <?=$cour->nom?>
-                        </p>
-                        <div class="flex items-center justify-between mt-3">
-                            <p class="text-blue-600 font-bold">$49</p>
-                            <p class="text-blue-600 flex items-center"><i class="ri-star-fill"></i> 4.8</p>
+
+                    ?>
+                    <div
+                        class="bg-white border border-blue-600 rounded-lg shadow-md p-4 hover:scale-105 transition-transform">
+                        <img src="/assets/images/cover4.png" alt="Course Image" class="rounded-t-lg w-full">
+                        <div class="py-3">
+                            <p class="text-sm text-gray-500 flex items-center space-x-2">
+                                <span><i class="ri-calendar-line"></i> 20 Nov, 2023</span>
+                                <span><i class="ri-file-list-line"></i> 3 Curriculum</span>
+                                <span><i class="ri-group-line"></i> 5 Students</span>
+                            </p>
+                            <h3 class="text-lg font-semibold text-gray-800 mt-2"></h3>
+                            <p class="text-gray-600 text-sm mt-1">
+                                <?= $cour->nom ?>
+                            </p>
+                            <div class="flex items-center justify-between mt-3">
+                                <p class="text-blue-600 font-bold">$49</p>
+                                <p class="text-blue-600 flex items-center"><i class="ri-star-fill"></i> 4.8</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <button
+                                class="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">
+                                Enroll Now
+                            </button>
                         </div>
                     </div>
-                    <div class="mt-4">
-                       <button class="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">
-                         Enroll Now
-                      </button>
-                    </div>
-                </div>
-                <?php
-                     }
-                     ?>
+                    <?php
+                }
+                ?>
 
-                
-               
 
-                
-                
 
-                
+
+
+
+
+
             </div>
         </div>
 

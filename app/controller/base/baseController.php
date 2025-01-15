@@ -76,6 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
     
+    
     if (isset($_POST["deleteStudent"])) {
     }
 
@@ -86,6 +87,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $reservationcontroller->save();
     }
 }
+if (isset($_POST['logout'])) {
+    session_start(); // Ensure the session is started before destroying it
+    session_destroy(); // Destroy the session
+    header('Location: http://localhost:8000/app/user/login.php'); // Redirect to login page
+    exit(); // Ensure no further code is executed after the redirect
+}
+
 
 ///////////////////////////////////////////////////////////////////
 

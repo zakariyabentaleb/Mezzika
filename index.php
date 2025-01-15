@@ -88,16 +88,16 @@
                         ?>
 
                         <div class="flex items-center space-x-4">
-                            <button
-                                class="p-2 px-4 bg-blue-600 text-white rounded-full hover:bg-white hover:text-blue-600 hover:border hover:border-blue-600 transition-colors">
-                                <a href="app/controller/base/baseController.php">log out</a>
-                            </button>
-
-                            <button
-                                class="p-2 px-4 border border-blue-600 text-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition-colors">
-                                <a href="../app/user/register.php"><?php echo $_SESSION['user']['nom'] ?></a>
-                            </button>
-
+                            <form action="\app\controller\base\baseController.php" method="POST">
+                                <button type="submit" name="logout"
+                                    class="p-2 px-4 bg-blue-600 text-white rounded-full hover:bg-white hover:text-blue-600 hover:border hover:border-blue-600 transition-colors">
+                                    Log out
+                                </button>
+                                <button
+                                    class="p-2 px-4 border border-blue-600 text-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition-colors">
+                                    <a href="../app/user/register.php"><?php echo $_SESSION['user']['nom'] ?></a>
+                                </button>
+                            </form>
 
                             <button class="p-2 hover:text-bg-blue-600 transition-colors">
                                 <i class="ri-menu-4-fill text-2xl"></i>
@@ -167,8 +167,8 @@
     <!-- Courses Categories Section  -->
     <section class="py-16 px-4 bg-white">
         <div class="max-w-6xl mx-auto">
-            
-            <div  class="text-center mb-12">
+
+            <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold mb-4">
                     Explore Top Courses
                     <span
@@ -179,7 +179,7 @@
                     of professional courses designed by industry experts.
                 </p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div
                     class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-blue-600 hover:scale-105 transition-transform duration-300">
