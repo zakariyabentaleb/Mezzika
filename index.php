@@ -41,7 +41,6 @@
             </div>
         </div>
 
-        
         <!-- Header -->
         <header class="border-b bg-white">
             <div class="container mx-auto px-4">
