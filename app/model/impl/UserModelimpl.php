@@ -57,6 +57,31 @@ class UserModelimpl implements UserModel
             throw new Exception("Error fetching users: " . $e->getMessage());
         }
     }
+    public function fetchUsersByRole( $role): array
+    {
+
+        $query = "select * from users where role  =  :role";
+        
+        try {
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':role', $role);
+            $stmt->execute();
+            $results = $stmt->fetchAll();
+
+            $users = [];
+
+            foreach ($results as $userResult) {
+                $user = new User($userResult["email"], $userResult["password"], $userResult["nom"], Role::from($userResult["role"]));
+
+                $users[] = $user;
+                // array_push($users, $user);
+            }
+            return $users;
+
+        } catch (Exception $e) {
+            throw new Exception("Error fetching users: " . $e->getMessage());
+        }
+    }
     public function verifyEmail(string $email): bool
     {
         $query = "SELECT * FROM users WHERE email = :email";
