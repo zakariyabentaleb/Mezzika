@@ -51,13 +51,13 @@ var_dump($result);
             <div class="container mx-auto px-4">
                 <div class="flex items-center justify-between py-4">
                     <a href="./index.php">
-                        <img src="./assets/images/Youdemy_Logo.svg" alt="Youdemy Platform">
+                        <img src="../../assets/images/LOGO.svg" alt="Youdemy Platform">
                     </a>
                     <nav class="hidden md:flex items-center space-x-6">
                         <a href="../../index.php"
-                            class="text-blue-600 font-bold  hover:text-bg-blue-600 transition-colors">Home</a>
+                            class="text-gray-900   hover:text-bg-blue-600 transition-colors">Home</a>
                         <a href="/app/views/cours.php"
-                            class="text-gray-900 hover:text-bg-blue-600 transition-colors">Courses</a>
+                            class="text-blue-600 font-bold hover:text-bg-blue-600 transition-colors">Courses</a>
                         <a href="./pages/pricing.php"
                             class="text-gray-900 hover:text-bg-blue-600 transition-colors">Pricing</a>
                         <a href="./pages/features.php"
@@ -236,7 +236,7 @@ var_dump($result);
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="md:col-span-1">
                     <div class="flex items-center gap-2 mb-4">
-                        <img src="./assets/images/Youdemy_Logo.svg" height="200" width="200">
+                        <img src="../../assets/images/LOGO.svg" height="200" width="200">
                     </div>
                     <p class="text-gray-600 mb-6">Eros in cursus turpis massa tincidunt Faucibus scelerisque eleifend
                         vulputate sapien nec sagittis.</p>

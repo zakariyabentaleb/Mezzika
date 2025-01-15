@@ -46,7 +46,7 @@
             <div class="container mx-auto px-4">
                 <div class="flex items-center justify-between py-4">
                     <a href="./index.php">
-                        <img src="./assets/images/Youdemy_Logo.svg" alt="Youdemy Platform">
+                        <img src="./assets/images/LOGO.svg" alt="Youdemy Platform">
                     </a>
                     <nav class="hidden md:flex items-center space-x-6">
                         <a href="/index.php"
@@ -59,21 +59,20 @@
                             class="text-gray-900 hover:text-bg-blue-600 transition-colors">Features</a>
                         <a href="./pages/features.php"
                             class="text-gray-900 hover:text-bg-blue-600 transition-colors">Blog</a>
-                            <?php
-                            if (!isset($_SESSION["user"])) {
-                                ?>
-                        <a href="./pages/contact.php"
-                            class="text-gray-900 hover:text-bg-blue-600 transition-colors">My Courses</a>
-                            <?php
-                            }
-                            else {
-                             ?>
-                              <a href="./pages/contact.php"
-                              class="text-gray-900 hover:text-bg-blue-600 transition-colors">Help Center</a>
-                              <?php
-                            }
+                        <?php
+                        if (!isset($_SESSION["user"])) {
                             ?>
-                            
+                            <a href="./pages/contact.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">My
+                                Courses</a>
+                            <?php
+                        } else {
+                            ?>
+                            <a href="./pages/contact.php"
+                                class="text-gray-900 hover:text-bg-blue-600 transition-colors">Help Center</a>
+                            <?php
+                        }
+                        ?>
+
 
                     </nav>
                     <?php
@@ -150,7 +149,7 @@
                         <span class="text-white">Learn Anything, Anytime, Anywhere</span> <br>
                         <span class="text-gradient md:leading-relaxed">Your Future Starts Here</span>
                     </h1>
-                    <p class="text-gray-400 md:text-lg">
+                    <p class="text-gray-100 md:text-lg">
                         Empower Your Mind with World-Class Learning – Join Youdemy Today
                     </p>
 
@@ -169,7 +168,7 @@
                         <span class="text-yellow-600 text-xl">
                             <i class="ri-star-fill"></i>
                         </span>
-                        <p class="text-gray-400">5-Star Ratings for Learning, Course Quality, and Student Success</p>
+                        <p class="text-gray-100">5-Star Ratings for Learning, Course Quality, and Student Success</p>
                     </div>
 
                 </div>
@@ -578,7 +577,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="md:col-span-1">
                     <div class="flex items-center gap-2 mb-4">
-                        <img src="./assets/images/Youdemy_Logo.svg" height="200" width="200">
+                        <img src="./assets/images/LOGO.svg" height="200" width="200">
                     </div>
                     <p class="text-gray-600 mb-6">Eros in cursus turpis massa tincidunt Faucibus scelerisque eleifend
                         vulputate sapien nec sagittis.</p>
