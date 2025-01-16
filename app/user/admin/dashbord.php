@@ -57,13 +57,14 @@ $result2 = $UserModelimpl->fetchUsersByRole($role2);
                     <i class="ri-arrow-right-s-line ml-auto"></i>
                 </a>
             </li>
-            <li class="mb-1 group">
-                <a class="flex items-center py-2 px-4 text-blue-100 hover:bg-blue-700 hover:text-white rounded-md">
-                    <i class="ri-logout-box-line mr-3 text-lg"></i>
-                    <span class="text-sm">Logout</span>
-                    <i class="ri-arrow-right-s-line ml-auto"></i>
-                </a>
-            </li>
+            <form action="\app\controller\base\baseController.php" method="POST">
+                <button type="submit" name="logout"
+                    class="p-2 px-4 bg-blue-600 text-white rounded-full hover:bg-white hover:text-blue-600 hover:border hover:border-blue-600 transition-colors">
+                    Log out
+                </button>
+            </form>
+            
+
         </ul>
     </div>
 

@@ -109,7 +109,7 @@ class CourModelimpl implements CourModel
     }
 
     public function getAllCours(): array {
-        $query = "select * from Cours";
+        $query = "select * from courses";
         $statement = $this->conn->query($query);
       $result = $statement->fetchAll(PDO::FETCH_OBJ);
         return  $result;
