@@ -14,6 +14,8 @@
 
     public function getAllCours(): array ;
 
+    public function getCourseById( int $id) : array ;
 
+    public function getCourseTeacher(  int $id) : array ;
 }
 ?>

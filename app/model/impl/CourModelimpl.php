@@ -108,16 +108,48 @@ class CourModelimpl implements CourModel
         return (int) $result->CourCount;
     }
 
-    public function getAllCours(): array {
+    public function getAllCours(): array
+    {
         $query = "select * from courses";
         $statement = $this->conn->query($query);
-      $result = $statement->fetchAll(PDO::FETCH_OBJ);
-        return  $result;
+        $result = $statement->fetchAll(PDO::FETCH_OBJ);
+        return $result;
     }
 
+
+
+    public function getCourseById($id): array
+    {
+        $query = "SELECT c.*, 
+                         cat.name AS category_name, 
+                         COUNT(e.studentId) AS student_count
+                  FROM courses c
+                  LEFT JOIN categories cat ON c.categoryId = cat.id
+                  LEFT JOIN enrollment e ON e.courseId = c.id
+                  WHERE c.id = :id
+                  GROUP BY c.id, c.titre, c.description, c.price, c.categoryId, 
+                           c.images, c.contenu, c.videoUrl, c.createdDate, 
+                           c.instructorId, c.Difficulty, c.Duration, cat.name";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+    
+    public function getCourseTeacher(  int $id) : array {
+         $query = "SELECT courses.*, users.nom AS teacher 
+              FROM courses 
+              INNER JOIN users 
+              ON courses.instructorId = users.id 
+              WHERE courses.id = :id ;";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-
-
+}
 
 ?>

@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
 
-        $person = new User($email, $password, $name = '', Role::STUDENT); // Vous pouvez ajuster selon votre rôle
+        $person = new User($email, $password, $name = '', Role::STUDENT);
         try {
 
             $userData = $userController->verifyUser($person);

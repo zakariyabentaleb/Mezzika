@@ -1,8 +1,13 @@
 <?php
+ session_start();
 require_once('../controller/impl/Courcontrollerimpl.php');
 $contrl = new Courcontrollerimpl();
-$result = $contrl->fetchCours();
+$id = $_GET["id"];
+$result = $contrl->getCourseById($id);
+$result2 = $contrl->getCourseTeacher($id);
 // var_dump($result);
+// var_dump($result2);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,9 +83,7 @@ $result = $contrl->fetchCours();
                         }
                         ?>
                     </nav>
-
                     <?php
-                    session_start();
                     if (!isset($_SESSION["user"])) {
                         ?>
                         <div class="flex items-center space-x-4">
@@ -150,59 +153,124 @@ $result = $contrl->fetchCours();
     </div>
     <!-- Courses Grid Section -->
 
-    <section>
-        <div class=" py-10 md:px-12 px-6">
-            <h2 class="text-4xl font-bold text-gray-800 mb-6 text-center md:mb-11">
-                Our ALL <span
-                    class="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-600">Courses</span>
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <?php
-                foreach ($result as $cour) {
+    <?php
+    foreach ($result as $cour) {
+        ?>
+        <div class="sm:px-6 lg:px-8 py-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+                <div class="flex">
+                    <div class="rounded-lg overflow-hidden flex-grow">
+                        <img src="/assets/images/cover4.png" alt="" class="rounded-lg h-full object-cover w-full">
+                    </div>
+                </div>
 
+                <div class="flex flex-col justify-between">
+                    <div>
+                        <h1 class="text-3xl font-bold mb-6"></h1>
+                        <div class="text-4xl font-bold mb-8 text-blue-400">
+                            <span class="text-sm font-normal"> <?= $cour->price ?> USD</span>
 
+                        </div>
 
-                    ?>
-                    <div
-                        class="bg-white border border-blue-600 rounded-lg shadow-md p-4 hover:scale-105 transition-transform">
-                        <img src="/assets/images/cover4.png" alt="Course Image" class="rounded-t-lg w-full">
-                        <div class="py-3">
-                            <p class="text-sm text-gray-500 flex items-center space-x-2">
-                                <span><i class="ri-calendar-line"></i><?= $cour->createdDate ?></span>
-                                <span><i class="ri-file-list-line"></i> 3 Curriculum</span>
-                                <span><i class="ri-group-line"></i> 5 Students</span>
-                            </p>
-                            <h3 class="text-lg font-semibold text-gray-800 mt-2"></h3>
-                            <p class="text-gray-600 text-sm mt-1">
-                                <?= $cour->titre ?>
-                            </p>
-                            <div class="flex items-center justify-between mt-3">
-                                <p class="text-blue-600 font-bold">$49</p>
-                                <p class="text-blue-600 flex items-center"><i class="ri-star-fill"></i> 4.8</p>
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center justify-between py-2 border-b">
+                                <div class="flex items-center gap-2">
+                                    <i class="ri-layout-grid-line"></i>
+                                    <span>Category</span>
+                                </div>
+                                <span></span>
+                            </div>
+
+                            <div class="flex items-center justify-between py-2 border-b">
+                                <div class="flex items-center gap-2">
+                                    <i class="ri-signal-tower-line"></i>
+                                    <span>Difficulty :</span>
+                                    <p><?= $cour->Difficulty ?></p>
+                                </div>
+                                <span></span>
+                            </div>
+                            <div class="flex items-center justify-between py-2 border-b">
+                                <div class="flex items-center gap-2">
+                                    <i class="ri-user-line"></i>
+                                    <span>Students</span>
+                                </div>
+                                <span></span>
+                            </div>
+                            <div class="flex items-center justify-between py-2 border-b">
+                                <div class="flex items-center gap-2">
+                                    <i class="ri-time-line"></i>
+                                    <span>Duration :</span>
+                                    <p><?= $cour->Duration ?></p>
+                                </div>
+                                <span></span>
                             </div>
                         </div>
-                        <a href="previewcour.php?id=<?= $cour->id ?>" class="w-full block">
-                            <button
-                                class="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">
-                                See Details 
-                            </button>
-                        </a>
                     </div>
-                    <?php
-                }
-                ?>
 
-
-
-
-
-
-
-
+                    <div class="flex gap-4">
+                        <button
+                            class="md:mt-6 flex-1 bg-blue-400 text-white py-3 font-bold text-lg rounded-lg hover:bg-gray-800">
+                            Enroll Now
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="sm:px-6 lg:px-8 py-4 mt-12">
+            <div class="bg-red-600 shadow-sm border rounded-lg bg-white p-4 py-6 pl-8">
+                <h2 class="text-2xl font-bold mb-4 text-blue-400">Course Description</h2>
+                <div class="prose max-w-none">
+                    <p class="text-gray-600 leading-relaxed">
+                        <?= $cour->description ?>
+                    </p>
+                </div>
+            </div>
+            <?php 
+            foreach($result2 as $res) {
 
-    </section>
+            ?>
+            <div class="border rounded-lg bg-white p-4 py-6 mt-12 pl-8">
+                <div class="flex justify-between items-center space-x-4">
+                    <div class="w-[15%]">
+                        <img src=" " class="rounded-full w-32 h-32 object-cover">
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-black">
+                            <?php ?>
+                        </h3>
+                        <p class="text-gray-500 mt-2">
+                            <?php ?>
+                        </p>
+                        <div class="flex items-center space-x-4 mt-2 text-gray-600">
+                            <div class="flex items-center">
+                                <i class="ri-user-3-line mr-1 text-blue-400"></i>
+                                <span> Students</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="ri-video-line mr-1 text-blue-400"></i>
+                                <span> Courses</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mt-4 leading-relaxed">
+                        <p><?= $res->teacher ?></p>
+                            <?php
+                            echo 
+                            'A passionate educator dedicated to helping learners achieve their goals through engaging and insightful courses. With expertise in various fields, our instructors bring a wealth of knowledge and experience to empower students worldwide.'
+                
+                            ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <?php
+            }
+            ?>
+
+
+        </div>
+        <?php
+    }
+    ?>
 
     <!-- Footer Section -->
 

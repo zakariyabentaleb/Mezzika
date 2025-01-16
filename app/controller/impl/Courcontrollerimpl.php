@@ -19,17 +19,29 @@ require_once 'C:\Users\youco\Desktop\iLearN-platform\app\model\impl\CourModelimp
             return false ;
 
     }
-
+    }
+    public function getCourseById($id): array|bool 
+    {
+       try {   
+        $result=$this->courModel->getCourseById($id);
+        return $result;
 
     }
+    catch (Exception $e) {
+        return false ;
 
-
-
-
+    }
  }
+ public function getCourseTeacher(  int $id) : array|bool
+  {
+   try {    
+    $result=$this->courModel->getCourseTeacher($id);
+    return $result;
+    } 
+catch (Exception $e) {  
+    return false ;
+   }
 
-
-
-
-
+}
+ }
 ?>
