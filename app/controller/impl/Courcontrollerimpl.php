@@ -43,5 +43,16 @@ catch (Exception $e) {
    }
 
 }
+
+public function getCoursetags(int $id): array|bool {
+       
+    try {    
+        $result=$this->courModel->getCoursetags($id);
+        return $result;
+        } 
+    catch (Exception $e) {  
+        return false ;
+       }
+}
  }
 ?>

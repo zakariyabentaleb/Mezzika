@@ -136,9 +136,10 @@ class CourModelimpl implements CourModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
-    
-    public function getCourseTeacher(  int $id) : array {
-         $query = "SELECT courses.*, users.nom AS teacher 
+
+    public function getCourseTeacher(int $id): array
+    {
+        $query = "SELECT courses.*, users.nom AS teacher 
               FROM courses 
               INNER JOIN users 
               ON courses.instructorId = users.id 
@@ -148,6 +149,20 @@ class CourModelimpl implements CourModel
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+    public function getCoursetags(int $id): array
+    {
+
+        $query = "SELECT courses.titre, tags.name
+                    FROM courses
+                  INNER JOIN coursetag ON courses.id = coursetag.courseId
+                 INNER JOIN tags ON coursetag.tagId = tags.id
+                  WHERE courses.id = :id ;";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+
     }
 
 }
