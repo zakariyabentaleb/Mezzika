@@ -1,12 +1,11 @@
 <?php
-require_once('C:\Users\youco\Desktop\iLearN-platform\app\controller\impl\UserControllerimpl.php');
+require_once('C:\Users\youco\Desktop\iLearN-platform\app\controller\impl\Courcontrollerimpl.php');
 require_once('C:\Users\youco\Desktop\iLearN-platform\app\enums\Role.php');
-$UserModelimpl = new UserModelimpl();
-$role = 'teacher';
-$role2='student';
-$result = $UserModelimpl->fetchUsersByRole($role);
-$result2 = $UserModelimpl->fetchUsersByRole($role2);
+$contrl = new Courcontrollerimpl();
+$result2 = $contrl->fetchCours();
 // var_dump($result);
+// var_dump($result2);
+// var_dump($result2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,6 +85,9 @@ $result2 = $UserModelimpl->fetchUsersByRole($role2);
                 <!-- Teacher Card -->
                 
                 <!-- Cours Card -->
+                 <?php 
+                 foreach($result2 as $resl) {
+                 ?>
                 <div class="bg-white rounded-md border border-blue-200 p-6 shadow-md">
                     <div class="flex justify-between mb-4">
                         <div>
@@ -101,7 +103,7 @@ $result2 = $UserModelimpl->fetchUsersByRole($role2);
                     <!-- Cours Information -->
                     <div class="mt-4">
                         <p class="text-gray-600 text-sm">
-                            <span class="font-bold text-gray-800">Title:</span> Introduction to AI
+                            <span class="font-bold text-gray-800">Title:</span> <?= $resl->titre ?>
                         </p>
                         <p class="text-gray-600 text-sm">
                             <span class="font-bold text-gray-800">Credits:</span> 3
@@ -113,6 +115,9 @@ $result2 = $UserModelimpl->fetchUsersByRole($role2);
                             Details</a>
                     </div>
                 </div>
+                <?php
+                 }
+                 ?>
             </div>
         </div>
     </main>
