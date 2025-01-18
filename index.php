@@ -62,7 +62,7 @@
                         <?php
                         if (!isset($_SESSION["user"])) {
                             ?>
-                            <a href="./pages/contact.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">My
+                            <a href="./app/views/mycourses.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">My
                                 Courses</a>
                             <?php
                         } else {

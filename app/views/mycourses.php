@@ -4,7 +4,7 @@ require_once("C:\Users\youco\Desktop\iLearN-platform\app\controller\impl\Student
 $enroll = new StudentModuleimpl();
 $studentId = $_SESSION["user"]["id"];
 $s = $enroll->getEnrolledCourses($studentId);
-var_dump($s);
+// var_dump($s);
 ?>
 <!DOCTYPE html>
 <html lang="en">
