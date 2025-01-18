@@ -1,13 +1,8 @@
 <?php
-// require_once '../classes/course.php';
-// require_once '../classes/user.php';
-// require_once '../classes/db.php';
-// require_once '../classes/category.php';
-// require_once '../classes/instructor.php';
-// require_once '../classes/tag.php';
-
 require_once('C:\Users\youco\Desktop\iLearN-platform\app\model\impl\TeacherModelimpl.php');
 require_once('C:\Users\youco\Desktop\iLearN-platform\app\model\impl\CategoryModelimpl.php');
+require_once('C:\Users\youco\Desktop\iLearN-platform\app\model\impl\TagModelimpl.php');
+
 session_start();
 // if ($_SESSION['id']['role'] != 'teacher') {
 //     header('Location: ../index.php');
@@ -19,7 +14,10 @@ $course = $res->getCoursesWithDetails($teacherid);
  $Course=$res->getEnrolledStudentsCount($teacherid);
 $categories = new CategoryModelimpl();
 $results = $categories->getCategories();
-var_dump($results);
+// var_dump($results);
+$tags = new TagModelimpl();
+$resultss = $tags->getTags();
+// var_dump($resultss);
 ?>
 
 <!DOCTYPE html>
@@ -306,12 +304,12 @@ var_dump($results);
                         <label for="tags" class="block text-sm font-medium text-gray-700 mb-2">Available Tags</label>
                         <div id="available-tags" class="space-y-2 space-x-1">
                             <?php
-                            // foreach ($tags as $tag) {
-                            //     echo "<div class='tag-item  space-x-2 inline-block p-2 px-4 border border-blue-400 rounded-full cursor-pointer hover:bg-blue-400' data-tag-id='" . $tag['id'] . "'>
-                            //          <span class='tag-name'>" . htmlspecialchars($tag['name']) . "</span>
-                            //          </div>";
-                            // }
-                            // ?>
+                            foreach ($resultss as $tag) {
+                                echo "<div class='tag-item  space-x-2 inline-block p-2 px-4 border border-blue-400 rounded-full cursor-pointer hover:bg-blue-400' data-tag-id='" . $tag->getId() . "'>
+                                     <span class='tag-name'>" .$tag->getnom() . "</span>
+                                     </div>";
+                            }
+                            ?>
                         </div>
 
                         <label for="selected-tags" class="block text-sm font-medium text-gray-700 mt-4 mb-2">Selected
