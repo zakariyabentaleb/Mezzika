@@ -170,20 +170,19 @@ $s = $enroll->getEnrolledCourses($studentId);
                         <img src="/assets/images/cover4.png" alt="Course Image" class="rounded-t-lg w-full">
                         <div class="py-3">
                             <p class="text-sm text-gray-500 flex items-center space-x-2">
-                                <span><i class="ri-calendar-line"></i><?= $cour->createdDate ?></span>
                                 <span><i class="ri-file-list-line"></i> 3 Curriculum</span>
                                 <span><i class="ri-group-line"></i> 5 Students</span>
                             </p>
                             <h3 class="text-lg font-semibold text-gray-800 mt-2"></h3>
                             <p class="text-gray-600 text-sm mt-1">
-                                <?= $cour->titre ?>
+                                <?= $cour->gettitre() ?>
                             </p>
                             <div class="flex items-center justify-between mt-3">
                                 <p class="text-blue-600 font-bold">$49</p>
                                 <p class="text-blue-600 flex items-center"><i class="ri-star-fill"></i> 4.8</p>
                             </div>
                         </div>
-                        <a href="courseview.php?id=<?= $cour->id ?>" class="w-full block">
+                        <a href="courseview.php?id=<?= $cour->getId() ?>" class="w-full block">
                             <button
                                 class="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">
                               View Course

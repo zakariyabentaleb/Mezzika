@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 header("Location: ../../../index.php");
                 break;
                 case 'teacher':
-                    header("Location: ../../../index.php");  
+                    header("Location: ../../user/teacher/teacherDash.php");  
                     break;
              }
 

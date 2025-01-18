@@ -1,6 +1,8 @@
 <?php
 require_once("C:\Users\youco\Desktop\iLearN-platform\app\model\StudentModel.php");
-require_once 'C:\Users\youco\Desktop\iLearN-platform\app\config\Database.php';
+require_once ('C:\Users\youco\Desktop\iLearN-platform\app\config\Database.php');
+require_once ('C:\Users\youco\Desktop\iLearN-platform\app\entities\Cours.php');
+
 class StudentModuleimpl implements StudentModel
 {
 
@@ -45,8 +47,23 @@ class StudentModuleimpl implements StudentModel
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(":studentId", $studentId, PDO::PARAM_INT);
         $stmt->execute();
-
-               return  $stmt->fetchAll(PDO::FETCH_OBJ);
+               
+        $courses = [];
+       
+        while ($course = $stmt->fetch(PDO::FETCH_OBJ)) {
+            // $courses[] = $course;
+            $course = new Cour(
+                $course->titre,
+                $course->description,
+                $course->contenu,
+                $course->id 
+            );
+            $courses[] = $course;
+            
+        }
+     
+        return $courses;
+              
     }
 
 }

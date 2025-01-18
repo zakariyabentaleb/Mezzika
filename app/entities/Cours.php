@@ -7,7 +7,8 @@
     private string $images;
     private string $contenu;
     
-     public function __construct($titre,$description,$contenu){
+     public function __construct($titre,$description,$contenu,$id =null){
+        $this->id = $id;
          $this->titre=$titre;
         $this->description=$description;
          $this->contenu=$contenu;
