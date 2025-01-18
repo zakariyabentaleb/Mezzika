@@ -13,10 +13,9 @@ session_start();
 // }
 $res = new TeacherModelimpl();
 $teacherid = $_SESSION['user']['id'];
-// echo $teacherid;
 $course = $res->getCoursesWithDetails($teacherid);
 // var_dump($course);
-
+ $Course=$res->getEnrolledStudentsCount($teacherid);
 // session_start();
 // $isLoggedIn = isset($_SESSION['user_id']);
 // $userRole = $isLoggedIn ? ($_SESSION['role'] ?? 'default') : 'default';
@@ -102,7 +101,7 @@ $course = $res->getCoursesWithDetails($teacherid);
                         <div class="ml-5 w-0 flex-1">
                             <dl>
                                 <dt class="text-sm font-medium text-gray-500 truncate">Total Courses</dt>
-                                <dd class="text-3xl font-semibold text-gray-900"> <?= $cours->total_rows ?></dd>
+                                <dd class="text-3xl font-semibold text-gray-900"> <?= $cours->getTotalRows() ?></dd>
                             </dl>
                         </div>
                         <?php } ?>
@@ -119,7 +118,7 @@ $course = $res->getCoursesWithDetails($teacherid);
                             <dl>
                                 <dt class="text-sm font-medium text-gray-500 truncate">Enrolled Students</dt>
                                 <dd class="text-3xl font-semibold text-gray-900">
-                                    <?php ?>
+                                    <?php echo ($Course) ?>
                                 </dd>
                             </dl>
                         </div>

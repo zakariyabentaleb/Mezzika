@@ -23,15 +23,15 @@ class TeacherModelimpl implements TeacherModel
                 SELECT COUNT(DISTINCT e.studentId) AS total_enrolled_students
                 FROM enrollment e
                 INNER JOIN courses c ON e.courseId = c.id
-                WHERE c.instructorId = ?
+                WHERE c.instructorId = :instructorId
             ";
         $stmt = $this->conn->prepare($query);
+       
         if ($stmt) {
-            $stmt->bind_param("i", $instructorId);
+            $stmt->bindParam(':instructorId', $instructorId, PDO::PARAM_INT);
             $stmt->execute();
-            $stmt->bind_result($enrolledStudentsCount);
-            $stmt->fetch();
-            $stmt->close();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return (int) $result['total_enrolled_students'];
         }
 
         return $enrolledStudentsCount;
@@ -47,7 +47,7 @@ class TeacherModelimpl implements TeacherModel
                     c.id, 
                     c.titre, 
                     cat.name AS category, 
-                    c.description,  -- Ajouté
+                    c.description,
                     c.contenu,  
                        COUNT(*) AS total_rows  ,
                     COUNT(DISTINCT e.studentId) AS students
@@ -74,13 +74,12 @@ class TeacherModelimpl implements TeacherModel
                     $course->contenu,
                     $course->id
                 );
-                $coursee->total_rows = $course->total_rows;
+                // $coursee->total_rows = $course->total_rows;
+                $coursee->setTotalRows($course->total_rows);
                 $courses[] = $coursee;
 
             }
-
  
-           
         }
 
 
