@@ -3,7 +3,6 @@ session_start();
 require_once("C:\Users\youco\Desktop\iLearN-platform\app\controller\impl\StudentControllerimpl.php");
 $enroll = new StudentModuleimpl();
 $studentId = $_SESSION["user"]["id"];
-$courseId = $_GET["courseId"];
 $s = $enroll->enroll($studentId, $courseId);
 $showSuccess = false;
 $successMessage = '';
@@ -118,7 +117,7 @@ if ($s === 'You are already enrolled in this course') {
                             class="px-6 py-3 bg-blue-400 text-white font-semibold rounded-full hover:bg-blue-500 transition">
                             Go to My Courses
                         </a>
-                        <a href="./courses.php"
+                        <a href="./cours.php"
                             class="px-6 py-3 bg-blue-400 text-white font-semibold rounded-full hover:bg-blue-500 transition">
                             Enroll in New Course
                         </a>

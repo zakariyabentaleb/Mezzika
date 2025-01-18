@@ -20,6 +20,16 @@ class StudentControllerimpl {
             return false ;
            }
     }
+    public function getEnrolledCourses(int $studentId): array|bool
+    {
+        try {    
+            $result=$this->studentModel->getEnrolledCourses($studentId);
+            return $result;
+            } 
+        catch (Exception $e) {  
+            return false ;
+           }
+    }
 
 }
 ?>
