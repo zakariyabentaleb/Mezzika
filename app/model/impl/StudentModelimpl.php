@@ -17,7 +17,6 @@ class StudentModuleimpl implements StudentModel {
     $stmt->bindParam(":courseId", $courseId, PDO::PARAM_INT);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC); 
-
     if ($result) {
         return "You are already enrolled in this course";
     }

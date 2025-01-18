@@ -1,11 +1,22 @@
 <?php
 session_start();
 require_once("C:\Users\youco\Desktop\iLearN-platform\app\controller\impl\StudentControllerimpl.php");
-$enroll = new StudentModuleimpl() ;
-$studentId=$_SESSION["user"]["id"];
-$courseId=$_GET["courseId"];
-$s=$enroll->enroll( $studentId,$courseId);
-var_dump($s);
+$enroll = new StudentModuleimpl();
+$studentId = $_SESSION["user"]["id"];
+$courseId = $_GET["courseId"];
+$s = $enroll->enroll($studentId, $courseId);
+$showSuccess = false;
+$successMessage = '';
+$errorMessage = '';
+if ($s === 'You are already enrolled in this course') {
+    $message = $s;  // Display the error message for being already enrolled
+    $showSuccess = false;
+    $errorMessage = $message;
+} else {
+    $successMessage = "You have successfully enrolled in the course";
+    $showSuccess = true;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -58,16 +69,16 @@ var_dump($s);
                         <img src="../../assets/images/LOGO.svg" alt="Youdemy Platform">
                     </a>
                     <nav class="hidden md:flex items-center space-x-6">
-                        <?php   ?>
-                            <a href="" class="text-gray-900 hover:text-blue-500 transition-colors">
-                               
-                            </a>
-                        <?php   ?>
+                        <?php ?>
+                        <a href="" class="text-gray-900 hover:text-blue-500 transition-colors">
+
+                        </a>
+                        <?php ?>
                     </nav>
                     <div class="flex items-center space-x-4">
-                    <?php
-                    if (!isset($_SESSION["user"])) {
-                        ?>
+                        <?php
+                        if (!isset($_SESSION["user"])) {
+                            ?>
                             <button
                                 class="p-2 px-4 bg-blue-400 text-white rounded-full hover:bg-white hover:text-blue-400 hover:border hover:border-blue-400 transition-colors">
                                 <a href="./login.php">Login</a>
@@ -82,10 +93,10 @@ var_dump($s);
                                 class="p-2 px-4 bg-red-700 text-white rounded-full hover:bg-white hover:text-red-700 hover:border hover:border-red-700 transition-colors">
                                 <a href="./logout.php">Logout</a>
                             </button>
-                        <?php   ?>
-                        <button id="mobile-menu-btn" class="p-2 hover:text-blue-500 transition-colors md:hidden">
-                            <i class="ri-menu-4-fill text-2xl"></i>
-                        </button>
+                            <?php ?>
+                            <button id="mobile-menu-btn" class="p-2 hover:text-blue-500 transition-colors md:hidden">
+                                <i class="ri-menu-4-fill text-2xl"></i>
+                            </button>
                         <?php } ?>
                     </div>
                 </div>
@@ -94,12 +105,14 @@ var_dump($s);
 
         <!--Enrollment Status -->
         <section class="hero flex flex-col items-center text-center justify-center mt-24">
-            <div class="mb-6">
-                <?php  ?>
+        <div class="mb-6">
+                <?php if ($showSuccess): ?>
                     <div>
                         <img src="../../assets/images/ll.png" alt="Success" height="400" width="400" class="mx-auto">
                     </div>
-                    <p class="text-xl font-semibold text-green-600 mb-4"></p>
+                    <p class="text-xl font-semibold text-green-600 mb-4">
+                        <?= htmlspecialchars($successMessage) ?>
+                    </p>
                     <div class="flex justify-center space-x-4">
                         <a href="./mycourses.php"
                             class="px-6 py-3 bg-blue-400 text-white font-semibold rounded-full hover:bg-blue-500 transition">
@@ -110,19 +123,24 @@ var_dump($s);
                             Enroll in New Course
                         </a>
                     </div>
-                <?php    ?>
+                <?php elseif (!$showSuccess): ?>
                     <div>
-                        <img src="../../assets/images/warning.png" height="400" width="400" class="mx-auto">
-                        <p class="text-red-700 text-xl font-bold mb-4"></p>
+                        <img src="../../assets/images/warning.png" alt="Warning" height="400" width="400" class="mx-auto">
                     </div>
-                    <div class="flex justify-center w-full ">
-                        <a href="./courses.php"
+                    <p class="text-red-700 text-xl font-bold mb-4">
+                        <?= htmlspecialchars($errorMessage) ?>
+                    </p>
+                    <div class="flex justify-center w-full">
+                        <a href="./cours.php"
                             class="px-6 mt-2 py-3 bg-blue-400 text-white font-semibold rounded-full hover:bg-blue-500 transition">
                             Go Back To Courses
                         </a>
                     </div>
-                <?php   ?>
+                <?php endif; ?>
             </div>
+            </div>
+
+
         </section>
 
 
