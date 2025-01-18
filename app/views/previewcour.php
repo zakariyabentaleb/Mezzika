@@ -220,7 +220,7 @@ $result3 = $contrl->getCoursetags($id);
                 <div class="flex gap-4">
                     <button
                         class="md:mt-6 flex-1 bg-blue-400 text-white py-3 font-bold text-lg rounded-lg hover:bg-gray-800">
-                        <a href="enroll.php?courseId=<?= urlencode($courseId) ?>">Enroll Now</a>
+                        <a href="enroll.php?courseId=<?= $id?>">Enroll Now</a>
                     </button>
                 </div>
             </div>

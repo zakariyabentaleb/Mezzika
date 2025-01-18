@@ -1,3 +1,12 @@
+<?php
+session_start();
+require_once("C:\Users\youco\Desktop\iLearN-platform\app\controller\impl\StudentControllerimpl.php");
+$enroll = new StudentModuleimpl() ;
+$studentId=$_SESSION["user"]["id"];
+$courseId=$_GET["courseId"];
+$s=$enroll->enroll( $studentId,$courseId);
+var_dump($s);
+?>
 
 <!DOCTYPE html>
 <html lang="en">

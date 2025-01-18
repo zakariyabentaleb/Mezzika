@@ -1,8 +1,8 @@
 <?php
-require_once '../../entities/Student.php';
-require_once '../../enums/Role.php';
-require_once '../../model/StudentModel.php';
-require_once '../../model/impl/StudentModelimpl.php';
+require_once 'C:\Users\youco\Desktop\iLearN-platform\app\entities\Student.php';
+require_once 'C:\Users\youco\Desktop\iLearN-platform\app\enums\Role.php';
+require_once 'C:\Users\youco\Desktop\iLearN-platform\app\model\StudentModel.php';
+require_once 'C:\Users\youco\Desktop\iLearN-platform\app\model\impl\StudentModelimpl.php';
 class StudentControllerimpl {
 
     private StudentModuleimpl $studentModel;
@@ -11,7 +11,7 @@ class StudentControllerimpl {
         $this->studentModel = new StudentModuleimpl();
     }
     
-    public function enroll(int $studentId, int $courseId) {
+    public function enroll(int $studentId, int $courseId):array|string {
         try {    
             $result=$this->studentModel->enroll($studentId, $courseId);
             return $result;
@@ -22,6 +22,4 @@ class StudentControllerimpl {
     }
 
 }
-
-
 ?>
