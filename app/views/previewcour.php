@@ -1,5 +1,5 @@
 <?php
- session_start();
+session_start();
 require_once('../controller/impl/Courcontrollerimpl.php');
 $contrl = new Courcontrollerimpl();
 $id = $_GET["id"];
@@ -8,7 +8,7 @@ $result2 = $contrl->getCourseTeacher($id);
 // var_dump($result);
 // var_dump($result2);
 $result3 = $contrl->getCoursetags($id);
-var_dump($result3);
+// var_dump($result3);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -174,57 +174,57 @@ var_dump($result3);
                     </div>
                 </div>
 
-                <div class="flex flex-col justify-between">
+                <div class="flex flex-col justify-between ">
                     <div>
-                        <h1 class="text-3xl font-bold mb-6"></h1>
+                        <h1 class="text-3xl font-bold mb-6"><?= $cour->titre ?></h1>
                         <div class="text-4xl font-bold mb-8 text-blue-400">
-                            <span class="text-sm font-normal"> <?= $cour->price ?> USD</span>
-
+                            <?= $cour->price ?><span class="text-sm font-normal">USD</span>
                         </div>
 
-                        <div class="space-y-4 mb-8">
-                            <div class="flex items-center justify-between py-2 border-b">
-                                <div class="flex items-center gap-2">
-                                    <i class="ri-layout-grid-line"></i>
-                                    <span>Category</span>
-                                </div>
-                                <span></span>
-                            </div>
-
-                            <div class="flex items-center justify-between py-2 border-b">
-                                <div class="flex items-center gap-2">
-                                    <i class="ri-signal-tower-line"></i>
-                                    <span>Difficulty :</span>
-                                    <p><?= $cour->Difficulty ?></p>
-                                </div>
-                                <span></span>
-                            </div>
-                            <div class="flex items-center justify-between py-2 border-b">
-                                <div class="flex items-center gap-2">
-                                    <i class="ri-user-line"></i>
-                                    <span>Students</span>
-                                </div>
-                                <span></span>
-                            </div>
-                            <div class="flex items-center justify-between py-2 border-b">
-                                <div class="flex items-center gap-2">
-                                    <i class="ri-time-line"></i>
-                                    <span>Duration :</span>
-                                    <p><?= $cour->Duration ?></p>
-                                </div>
-                                <span></span>
-                            </div>
-                        </div>
                     </div>
 
-                    <div class="flex gap-4">
-                        <button
-                            class="md:mt-6 flex-1 bg-blue-400 text-white py-3 font-bold text-lg rounded-lg hover:bg-gray-800">
-                            Enroll Now
-                        </button>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center justify-between py-2 border-b">
+                            <div class="flex items-center gap-2">
+                                <i class="ri-layout-grid-line"></i>
+                                <span>Category</span>
+                            </div>
+                            <span></span>
+                        </div>
+
+                        <div class="flex items-center justify-between py-2 border-b">
+                            <div class="flex items-center gap-2">
+                                <i class="ri-signal-tower-line"></i>
+                                <span>Difficulty :</span>
+                                <p><?= $cour->Difficulty ?></p>
+                            </div>
+                            <span></span>
+                        </div>
+                        <div class="flex items-center justify-between py-2 border-b">
+                            <div class="flex items-center gap-2">
+                                <i class="ri-user-line"></i>
+                                <span>Students</span>
+                            </div>
+                            <span></span>
+                        </div>
+                        <div class="flex items-center justify-between py-2 border-b">
+                            <div class="flex items-center gap-2">
+                                <i class="ri-time-line"></i>
+                                <span>Duration :</span>
+                                <p><?= $cour->Duration ?></p>
+                            </div>
+                            <span></span>
+                        </div>
                     </div>
                 </div>
+                <div class="flex gap-4">
+                    <button
+                        class="md:mt-6 flex-1 bg-blue-400 text-white py-3 font-bold text-lg rounded-lg hover:bg-gray-800">
+                        <a href="enroll.php?courseId=<?= urlencode($courseId) ?>">Enroll Now</a>
+                    </button>
+                </div>
             </div>
+        </div>
         </div>
         <div class="sm:px-6 lg:px-8 py-4 mt-12">
             <div class="bg-red-600 shadow-sm border rounded-lg bg-white p-4 py-6 pl-8">
@@ -235,44 +235,45 @@ var_dump($result3);
                     </p>
                 </div>
             </div>
-            <?php 
-            foreach($result2 as $res) {
+            <?php
+            foreach ($result2 as $res) {
 
-            ?>
-            <div class="border rounded-lg bg-white p-4 py-6 mt-12 pl-8">
-                <div class="flex justify-between items-center space-x-4">
-                    <div class="w-[15%]">
-                        <img src=" " class="rounded-full w-32 h-32 object-cover">
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-black">
-                            <?php ?>
-                        </h3>
-                        <p class="text-gray-500 mt-2">
-                            <?php ?>
-                        </p>
-                        <div class="flex items-center space-x-4 mt-2 text-gray-600">
-                            <div class="flex items-center">
-                                <i class="ri-user-3-line mr-1 text-blue-400"></i>
-                                <span> Students</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="ri-video-line mr-1 text-blue-400"></i>
-                                <span> Courses</span>
-                            </div>
+                ?>
+                <div class="border rounded-lg bg-white p-4 py-6 mt-12 pl-8">
+                    <div class="flex justify-between items-center space-x-4">
+                        <div class="w-[15%]">
+                            <img src="../../assets/images/Anonymous-Profile-pic.jpg "
+                                class="rounded-full w-32 h-32 object-cover">
                         </div>
-                        <p class="text-gray-600 mt-4 leading-relaxed">
-                        <p><?= $res->teacher ?></p>
+                        <div>
+                            <h3 class="text-xl font-semibold text-black">
+                                <?php ?>
+                            </h3>
+                            <p class="text-gray-500 mt-2">
+                                <?php ?>
+                            </p>
+                            <div class="flex items-center space-x-4 mt-2 text-gray-600">
+                                <div class="flex items-center">
+                                    <i class="ri-user-3-line mr-1 text-blue-400"></i>
+                                    <span> Students</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="ri-video-line mr-1 text-blue-400"></i>
+                                    <span> Courses</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mt-4 leading-relaxed">
+                            <p><?= $res->teacher ?></p>
                             <?php
-                            echo 
-                            'A passionate educator dedicated to helping learners achieve their goals through engaging and insightful courses. With expertise in various fields, our instructors bring a wealth of knowledge and experience to empower students worldwide.'
-                
-                            ?>
-                        </p>
+                            echo
+                                'A passionate educator dedicated to helping learners achieve their goals through engaging and insightful courses. With expertise in various fields, our instructors bring a wealth of knowledge and experience to empower students worldwide.'
+
+                                ?>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <?php
+                <?php
             }
             ?>
 

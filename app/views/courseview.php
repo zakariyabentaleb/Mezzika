@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -120,13 +122,18 @@
                     </a>
                     <nav class="hidden md:flex items-center space-x-6">
                         <?php ?>
-                            <a href=" " class="text-gray-900 hover:text-blue-500 transition-colors">
-                                 
-                            </a>
-                        <?php   ?>
+                        <a href=" " class="text-gray-900 hover:text-blue-500 transition-colors">
+
+                        </a>
+                        <?php ?>
                     </nav>
-                    <div class="flex items-center space-x-4">
-                        <?php   ?>
+                    <?php
+
+                    if (!isset($_SESSION["user"])) {
+                        ?>
+                        
+                        <div class="flex items-center space-x-4">
+                            <?php ?>
                             <button
                                 class="p-2 px-4 bg-blue-400 text-white rounded-full hover:bg-white hover:text-blue-400 hover:border hover:border-blue-400 transition-colors">
                                 <a href="./login.php">Login</a>
@@ -135,16 +142,30 @@
                                 class="p-2 px-4 border border-blue-400 text-blue-400 rounded-full hover:bg-blue-400 hover:text-white transition-colors">
                                 <a href="./register.php">Register</a>
                             </button>
-                        <?php   ?>
-                            <button
-                                class="p-2 px-4 bg-red-400 text-white rounded-full hover:bg-white hover:text-red-400 hover:border hover:border-red-400 transition-colors">
-                                <a href="./logout.php">Logout</a>
+
+                            <button id="mobile-menu-btn" class="p-2 hover:text-blue-500 transition-colors md:hidden">
+                                <i class="ri-menu-4-fill text-2xl"></i>
                             </button>
-                        <?php   ?>
-                        <button id="mobile-menu-btn" class="p-2 hover:text-blue-500 transition-colors md:hidden">
-                            <i class="ri-menu-4-fill text-2xl"></i>
-                        </button>
-                    </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                    <div class="flex items-center space-x-4">
+                            <form action="\app\controller\base\baseController.php" method="POST">
+                                <button type="submit" name="logout"
+                                    class="p-2 px-4 bg-blue-600 text-white rounded-full hover:bg-white hover:text-blue-600 hover:border hover:border-blue-600 transition-colors">
+                                    Log out
+                                </button>
+                                <button
+                                    class="p-2 px-4 border border-blue-600 text-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition-colors">
+                                    <a href="../app/user/register.php"><?php echo $_SESSION["user"]['nom'] ?></a>
+                                </button>
+                            </form>
+
+                            <button id="mobile-menu-btn" class="p-2 hover:text-blue-500 transition-colors md:hidden">
+                                <i class="ri-menu-4-fill text-2xl"></i>
+                            </button>
+                        </div>
                 </div>
             </div>
         </header>
@@ -168,7 +189,7 @@
             <h3 class="font-semibold mb-2 text-xl pb-3 border-b text-blue-400 mb-3">Course Video</h3>
             <div class="relative aspect-video rounded-lg overflow-hidden ">
                 <video controls poster="../../assets/images/cover4.png " width="100%">
-                    <source src="../../assets/images/videos/videoplayback.mp4"  type="video/mp4">
+                    <source src="../../assets/images/videos/videoplayback.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
@@ -200,7 +221,7 @@
                                     <i class="ri-user-line text-blue-400"></i>
                                     <span>Students</span>
                                 </div>
-                                <span>   </span>
+                                <span> </span>
                             </div>
                             <div class="flex items-center justify-between py-2 ">
                                 <div class="flex items-center gap-2">
@@ -234,7 +255,7 @@
                                             <?php ?>
                                         </div>
                                         <div class="text-sm text-gray-500">
-                                            <?php  ?>
+                                            <?php ?>
                                         </div>
                                     </div>
                                 </div>
@@ -252,7 +273,7 @@
         <div class="w-[70%] border p-2 rounded-lg shadow-sm px-6 pb-8 pt-6">
             <h3 class="font-semibold mb-2 text-xl pb-3 border-b text-blue-400 mb-3">Course Document</h3>
             <div class="relative aspect-video rounded-lg overflow-hidden ">
-                 <iframe src="../../assets/images/pdfs/pp.pdf" width="100%" height="600px"></iframe>
+                <iframe src="../../assets/images/pdfs/pp.pdf" width="100%" height="600px"></iframe>
             </div>
         </div>
         <!-- sidebar -->
@@ -314,10 +335,10 @@
                                     </div>
                                     <div>
                                         <div class="font-medium">
-                                          
+
                                         </div>
                                         <div class="text-sm text-gray-500">
-                                           
+
                                         </div>
                                     </div>
                                 </div>
