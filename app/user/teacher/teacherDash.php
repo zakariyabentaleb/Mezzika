@@ -7,6 +7,7 @@
 // require_once '../classes/tag.php';
 
 require_once('C:\Users\youco\Desktop\iLearN-platform\app\model\impl\TeacherModelimpl.php');
+require_once('C:\Users\youco\Desktop\iLearN-platform\app\model\impl\CategoryModelimpl.php');
 session_start();
 // if ($_SESSION['id']['role'] != 'teacher') {
 //     header('Location: ../index.php');
@@ -16,21 +17,9 @@ $teacherid = $_SESSION['user']['id'];
 $course = $res->getCoursesWithDetails($teacherid);
 // var_dump($course);
  $Course=$res->getEnrolledStudentsCount($teacherid);
-// session_start();
-// $isLoggedIn = isset($_SESSION['user_id']);
-// $userRole = $isLoggedIn ? ($_SESSION['role'] ?? 'default') : 'default';
-
-// $menuItems = User::getMenuItems($userRole);
-// $db = new Database();
-// $category = new category($db);
-// $categories = $category->getCategories();
-// $tag = new Tag($db);
-// $tags = $tag->getTags();
-// $instructorId = $_SESSION['user_id'];
-// $instructor = new Instructor($db);
-// $courseCount = $instructor->getCoursesCount($instructorId);
-// $enrolledCount = $instructor->getEnrolledStudentsCount($instructorId);
-// $courses = $instructor->getCoursesWithDetails($instructorId);
+$categories = new CategoryModelimpl();
+$results = $categories->getCategories();
+var_dump($results);
 ?>
 
 <!DOCTYPE html>
@@ -306,8 +295,8 @@ $course = $res->getCoursesWithDetails($teacherid);
                         <select id="category" name="category"
                             class="mt-1 block p-2 w-full rounded-md border border-gray-200 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                             <?php
-                            foreach ($categories as $cat) {
-                                echo "<option value=\"" . $cat['id'] . "\">" . htmlspecialchars($cat['name']) . "</option>";
+                            foreach ($results as $result) {
+                                echo "<option value=\"" . $result->getId() . "\">" . $result->getnom() . "</option>";
                             }
                             ?>
                         </select>
