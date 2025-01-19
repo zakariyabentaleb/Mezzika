@@ -5,6 +5,6 @@ interface StudentModel {
     
     public function getEnrolledCourses(int $studentId) : array|bool;
        
-    
+    public function deleteStudent(string $nom) : bool;
 }
 ?>

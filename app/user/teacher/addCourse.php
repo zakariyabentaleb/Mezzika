@@ -71,7 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo $cour->getcontenu();
     echo $cour->getInstructorId();
     try {
-        echo 'try';
         $result = $course->addCour( $cour);
         header(header: 'Location: ./teacherDash.php');
         

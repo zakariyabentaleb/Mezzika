@@ -6,7 +6,7 @@ $role = 'teacher';
 $role2 = 'student';
 $result = $UserModelimpl->fetchUsersByRole($role);
 $result2 = $UserModelimpl->fetchUsersByRole($role2);
-// var_dump($result);
+//var_dump($result2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +16,7 @@ $result2 = $UserModelimpl->fetchUsersByRole($role2);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../../scripts/instructorDash.js" defer></script>
     <title>Blue Dashboard</title>
 </head>
 
@@ -126,7 +127,7 @@ $result2 = $UserModelimpl->fetchUsersByRole($role2);
                                 <div class="flex justify-end">
                                     <button
                                         class="bg-red-500 hover:bg-red-600 text-white text-sm px-5 py-2 rounded-full shadow-lg transform transition-transform hover:scale-105"
-                                        onclick="deleteStudent('<?= $res->getName() ?>')">
+                                        onclick="StudentDelete('<?= $res->getName() ?>')">
                                         Supprimer
                                     </button>
                                 </div>
@@ -179,7 +180,7 @@ $result2 = $UserModelimpl->fetchUsersByRole($role2);
                                 <div class="flex justify-end">
                                     <button
                                         class="bg-red-500 hover:bg-red-600 text-white text-sm px-5 py-2 rounded-full shadow-lg transform transition-transform hover:scale-105"
-                                        onclick="deleteStudent('<?= $res->getName() ?>')">
+                                        onclick="StudentDelete('<?= $res2->getName() ?>')">
                                         Supprimer
                                     </button>
                                 </div>
