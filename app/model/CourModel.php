@@ -2,7 +2,7 @@
 
   interface CourModel
 {
-    public function addCour(Cour $cour): bool;
+    public function addCour(Cour $cour);
 
     public function deleteCour(int $id ): void;
 

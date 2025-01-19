@@ -165,11 +165,16 @@ $result = $contrl->fetchCours();
                     ?>
                     <div
                         class="bg-white border border-blue-600 rounded-lg shadow-md p-4 hover:scale-105 transition-transform">
-                        <img src="/assets/images/cover4.png" alt="Course Image" class="rounded-t-lg w-full">
+                        <?php if (isset($cour->images) && !empty($cour->images)) { ?>
+                        <img src="<?php echo htmlspecialchars($cour->images); ?>" alt="Course Image" class="rounded-t-lg w-full">
+                        <?php } else { ?>
+                        <img src="../../assets/images/cover4.png" alt="Course Image" class="rounded-t-lg w-full">
+                         <?php } ?>
+
                         <div class="py-3">
                             <p class="text-sm text-gray-500 flex items-center space-x-2">
                                 <span><i class="ri-calendar-line"></i><?= $cour->createdDate ?></span>
-                                <span><i class="ri-file-list-line"></i> 3 Curriculum</span>
+                               <span><i class="ri-file-list-line"></i> 3 Curriculum</span>
                                 <span><i class="ri-group-line"></i> 5 Students</span>
                             </p>
                             <h3 class="text-lg font-semibold text-gray-800 mt-2"></h3>
@@ -177,7 +182,7 @@ $result = $contrl->fetchCours();
                                 <?= $cour->titre ?>
                             </p>
                             <div class="flex items-center justify-between mt-3">
-                                <p class="text-blue-600 font-bold">$49</p>
+                                <p class="text-blue-600 font-bold"><?= $cour->price ?>$</p>
                                 <p class="text-blue-600 flex items-center"><i class="ri-star-fill"></i> 4.8</p>
                             </div>
                         </div>

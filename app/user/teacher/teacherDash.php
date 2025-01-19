@@ -4,7 +4,7 @@ require_once('C:\Users\youco\Desktop\iLearN-platform\app\model\impl\CategoryMode
 require_once('C:\Users\youco\Desktop\iLearN-platform\app\model\impl\TagModelimpl.php');
 
 session_start();
-// if ($_SESSION['id']['role'] != 'teacher') {
+// if ($_SESSION['user']['role'] != 'teacher') {
 //     header('Location: ../index.php');
 // }
 $res = new TeacherModelimpl();
@@ -17,6 +17,10 @@ $results = $categories->getCategories();
 // var_dump($results);
 $tags = new TagModelimpl();
 $resultss = $tags->getTags();
+$count=$res->getCourseStatistics($teacherid);
+// var_dump($count);
+//  echo $count['total_courses'];
+//  echo $count['total_students'];
 // var_dump($resultss);
 ?>
 
@@ -30,7 +34,8 @@ $resultss = $tags->getTags();
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../assets/images/favicon.svg">
-    <script src="../assets/scripts/instructorDash.js" defer></script>
+    <script src="../../../scripts/instructorDash.js" defer></script>
+    
     <style>
         .text-gradient {
             background: linear-gradient(to right, #f2b212, #fadf10);
@@ -84,14 +89,15 @@ $resultss = $tags->getTags();
                         <div class="flex-shrink-0">
                             <i class="ri-book-open-line text-2xl text-blue-400"></i>
                         </div>
-                          <?php foreach ($course as $cours) { ?>
+                        
                         <div class="ml-5 w-0 flex-1">
                             <dl>
                                 <dt class="text-sm font-medium text-gray-500 truncate">Total Courses</dt>
-                                <dd class="text-3xl font-semibold text-gray-900"> <?= $cours->getTotalRows() ?></dd>
+                                
+                                <dd class="text-3xl font-semibold text-gray-900"> <?= $count['total_courses'] ?></dd>
                             </dl>
                         </div>
-                        <?php } ?>
+                      
                     </div>
                 </div>
             </div>
@@ -189,9 +195,10 @@ $resultss = $tags->getTags();
                                     <button class="text-blue-600 hover:text-blue-900 mr-4">
                                         <i class="ri-edit-line text-lg"></i>
                                     </button>
-                                    <button class="text-red-600 hover:text-red-900">
-                                        <i class="ri-delete-bin-line text-lg"></i>
-                                    </button>
+                                    <button class="text-red-600 hover:text-red-900"
+                                            onclick="confirmDelete(<?php echo $cours->getId(); ?>)">
+                                            <i class="ri-delete-bin-line text-lg"></i>
+                                        </button>
                                 </td>
                             </tr>
                             <?php } ?>
@@ -209,7 +216,7 @@ $resultss = $tags->getTags();
                     id="toggleIcon"></i>
             </div>
             <div class="border-t border-gray-200 px-4 py-5 sm:px-6" id="courseForm">
-                <form class="space-y-6">
+                <form  class="space-y-6" method="POST" enctype="multipart/form-data" action="addCourse.php">
                     <div>
                         <label for="title" class="block text-sm font-medium text-gray-700 mb-4">Title</label>
                         <input type="text" name="title" id="title"
@@ -325,7 +332,7 @@ $resultss = $tags->getTags();
                         <label class="block text-sm font-medium text-gray-700 mb-4">Content Type</label>
                         <div>
 
-                            <select id="content-type"
+                            <select id="content-type" name="content-type"
                                 class="mt-1 block w-full rounded-md p-2 border border-orange-300 shadow-sm focus:border-orange-500 focus:ring-orange-500">
                                 <option value="">-- Select content type --</option>
                                 <option value="video">Video</option>

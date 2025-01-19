@@ -6,7 +6,7 @@ session_start();
 $search=new CourModelimpl();
 $query=$_GET['query'] ;
 $searchResults= $search->searchCour($query);
-var_dump($searchResults);
+// var_dump($searchResults);
 
 ?>
 <!DOCTYPE html>
@@ -50,7 +50,7 @@ var_dump($searchResults);
             <div class="container mx-auto px-4">
                 <div class="flex items-center justify-between py-4">
                     <a href="../index.php">
-                        <img src="../assets/images/Youdemy_Logo.svg" alt="Youdemy Platform">
+                        <img src="../../assets/images/LOGO.svg" alt="Youdemy Platform">
                     </a>
                     <nav class="hidden md:flex items-center space-x-6">
                         <?php  ?>
@@ -142,7 +142,7 @@ var_dump($searchResults);
                         <?php foreach ($searchResults as $result): ?>
                             <div
                             class="bg-white border border-blue-400 rounded-lg shadow-md p-4 hover:scale-105 transition-transform">
-                            <img src="../uploads/thumbnails/" alt="Course Image"
+                            <img  src="/assets/images/cover4.png" alt="Course Image"
                                 class="rounded-t-lg w-full">
                             <div class="py-3">
                                 <p class="text-sm text-gray-500 flex items-center space-x-2"> <span

@@ -13,27 +13,59 @@ class CourModelimpl implements CourModel
         $this->conn = Database::getInstance()->getConnection();
     }
 
-    public function addCour(Cour $cour): bool
+    public function addCour(Cour $cour)
     {
-
-        $query = "INSERT INTO Cours (titre  , description , contenu , image ) values (:titre , :description, :contenu , :image )";
+        
+        // Récupération des valeurs depuis l'objet Cour
+        $titre = $cour->getTitre();
+        $descr = $cour->getDescription();
+        $price = $cour->getPrice();
+        $categoryId = $cour->getCategoryId();
+        $images = $cour->getImages();
+        $contenu = $cour->getContenu();
+        $videoUrl = $cour->getVideoUrl();
+        $instructorId = $cour->getInstructorId();
+        $difficulty = $cour->getDifficulty();
+        $duration = $cour->getDuration();
+        $cour->setStatus('pending');
+        $status = $cour->getStatus();
+        echo "<pre>";
+        var_dump($cour);
+        echo $cour->getInstructorId();
+        echo "</pre>";
         try {
-            $stmt = $this->conn->prepare($query);
-
-            return $stmt->execute(
-                [
-                    ':titre' => $cour->gettitre(),
-                    ':description' => $cour->getdescription(),
-                    ':contenu' => $cour->getcontenu(),
-                    ':image' => $cour->getimages() ?? "hhhhhhhhh.jpg"
-
-                ]
-            );
-
+            $query = "INSERT INTO courses (
+                titre, description, price, categoryId, images, contenu, videoUrl, instructorId , difficulty, duration,status
+            ) VALUES (
+                :titre, :description, :price, :categoryId, :images, :contenu, :videoUrl,:instructorId ,:difficulty, :duration,:status
+            )";
+    $stmt = $this->conn->prepare($query);
+    echo "fdgvgd";
+    
+    // Liaison des paramètres
+    $stmt->bindParam(":titre", $titre);
+    $stmt->bindParam(":description", $descr);
+    $stmt->bindParam(":price", $price);
+    $stmt->bindParam(":categoryId", $categoryId);
+    $stmt->bindParam(":images", $images);
+    $stmt->bindParam(":contenu", $contenu);
+    $stmt->bindParam(":videoUrl", $videoUrl);
+    $stmt->bindParam(":instructorId", $instructorId);
+    $stmt->bindParam(":difficulty", $difficulty);
+    $stmt->bindParam(":duration", $duration);
+    $stmt->bindParam(":status", $status);
+    
+    // Exécution de la requête
+    $stmt->execute();
+    echo "execute";
+            return true;
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de l'insertion du cours : " . $e->getMessage());
         } catch (Exception $e) {
-            throw new Exception("error while saving user into database");
+            throw new Exception("Une erreur inattendue s'est produite : " . $e->getMessage());
         }
     }
+
 
     public function updateCour(Cour $cour): void
     {
@@ -51,7 +83,7 @@ class CourModelimpl implements CourModel
                     ':courtitre' => $cour->gettitre(),
                     ':courdescription' => $cour->getdescription(),
                     ':courContent' => $cour->getcontenu(),
-                    ':image' => $cour->getimages() ?? "hhhhhhhhh.jpg"
+                    ':image' => $cour->getimages()
 
                 ]
             );
@@ -63,7 +95,7 @@ class CourModelimpl implements CourModel
 
     public function deleteCour(int $id): void
     {
-        $query = "DELETE FROM Cours WHERE id = :courId";
+        $query = "DELETE FROM courses WHERE id = :courId";
         $statement = $this->conn->prepare($query);
         $statement->bindParam(':courId', $id, PDO::PARAM_INT);
         $statement->execute();
@@ -76,27 +108,27 @@ class CourModelimpl implements CourModel
             FROM courses
             WHERE courses.titre LIKE CONCAT('%', :titre, '%');
         ";
-    
+
         try {
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':titre', $titre, PDO::PARAM_STR); // Bind the title parameter properly
             $stmt->execute();
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch the results as an associative array
-    
+
             $courses = [];
-    
+
             foreach ($results as $courseResult) {
                 $course = new Cour($courseResult["titre"], $courseResult["description"], $courseResult["contenu"], $courseResult["id"]);
                 $courses[] = $course;
             }
-    
+
             return $courses;
-    
+
         } catch (Exception $e) {
             throw new Exception("Error fetching courses: " . $e->getMessage());
         }
     }
-    
+
 
     public function countCour(): int
     {

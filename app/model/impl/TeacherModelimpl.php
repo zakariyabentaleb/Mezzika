@@ -26,7 +26,7 @@ class TeacherModelimpl implements TeacherModel
                 WHERE c.instructorId = :instructorId
             ";
         $stmt = $this->conn->prepare($query);
-       
+
         if ($stmt) {
             $stmt->bindParam(':instructorId', $instructorId, PDO::PARAM_INT);
             $stmt->execute();
@@ -79,13 +79,51 @@ class TeacherModelimpl implements TeacherModel
                 $courses[] = $coursee;
 
             }
- 
+
         }
 
 
         return $courses;
 
 
+    }
+
+    public function getCourseStatistics(int $instructorId): array
+    {
+        try {
+
+
+            $query = "
+            SELECT 
+             COUNT(DISTINCT c.id) AS total_rows, 
+           COUNT(DISTINCT e.studentId) AS students
+           FROM 
+            courses c
+          LEFT JOIN 
+        enrollment e ON e.courseId = c.id
+          WHERE 
+            c.instructorId = :instructorId;
+        ";
+
+            $stmt = $this->conn->prepare($query);
+
+            // Lier l'ID de l'instructeur
+            $stmt->bindParam(':instructorId', $instructorId, PDO::PARAM_INT);
+
+            // Exécuter la requête
+            $stmt->execute();
+
+            // Récupérer les résultats
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Retourner les statistiques sous forme de tableau
+            return [
+                'total_courses' => $result['total_rows'] ?? 0,
+                'total_students' => $result['students'] ?? 0
+            ];
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la récupération des statistiques : " . $e->getMessage());
+        }
     }
 
 }
