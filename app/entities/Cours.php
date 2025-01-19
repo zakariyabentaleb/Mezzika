@@ -6,7 +6,7 @@ class Cour
     private string $titre;
     private string $description;
     private ?string $images;
-    private string $contenu;
+    private ?string $contenu;
     private $total_rows;
     private ?float $price;
     private ?int $categoryId;
@@ -17,7 +17,7 @@ class Cour
     private ?string $duration;
     private ?string $status;
 
-    public function __construct($titre, $description, $contenu, $id = null, $price = null, $categoryId = null, $images = null, $videoUrl = null, $createdDate = null, $instructorId = null, $difficulty = null, $duration = null, $status = null)
+    public function __construct($titre, $description, $contenu=null, $id = null, $price = null, $categoryId = null, $images = null, $videoUrl = null, $createdDate = null, $instructorId = null, $difficulty = null, $duration = null, $status = null)
     {
         $this->id = $id;
         $this->titre = $titre;
@@ -58,7 +58,7 @@ class Cour
     {
         $this->titre = $description;
     }
-    public function getcontenu(): string
+    public function getcontenu(): string|null
     {
         return $this->contenu;
     }
@@ -66,7 +66,7 @@ class Cour
     {
         $this->contenu = $contenu;
     }
-    public function getimages(): string
+    public function getimages(): ?string
     {
         return $this->images;
     }
@@ -101,11 +101,7 @@ class Cour
     {
         $this->categoryId = $categoryId;
     }
-    public function setImages(?string $images): void
-    {
-        $this->images = $images;
-    }
-
+   
     public function getVideoUrl(): ?string
     {
         return $this->videoUrl;

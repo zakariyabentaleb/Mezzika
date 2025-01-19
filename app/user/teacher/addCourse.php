@@ -36,16 +36,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    $contentFile = null;
+    $contentFile1 = null;
+    $contentFile2 = null;
     if ($contentType === 'video' && !empty($_FILES['file-upload-video']['name'])) {
         $contentPath = $uploadsDir . basename($_FILES['file-upload-video']['name']);
         if (move_uploaded_file($_FILES['file-upload-video']['tmp_name'], $contentPath)) {
-            $contentFile = $contentPath;
+            $contentFile1 = $contentPath;
         }
     } elseif ($contentType === 'document' && !empty($_FILES['file-upload-document']['name'])) {
         $contentPath = $uploadsDir . basename($_FILES['file-upload-document']['name']);
         if (move_uploaded_file($_FILES['file-upload-document']['tmp_name'], $contentPath)) {
-            $contentFile = $contentPath;
+            $contentFile2 = $contentPath;
         }
     }
 
@@ -55,12 +56,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $cour = new Cour(
         $title,
         $description,
-        $contentFile, // Fichier contenu (vidéo ou document)
+        $contentFile2, // Fichier contenu (vidéo ou document)
         null ,
         $price,
         $categoryId,
         $thumbnail,
-        $contentFile,
+        $contentFile1,
         null,
         $instructorId, 
         $difficulty,

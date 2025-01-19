@@ -4,7 +4,7 @@ require_once("C:\Users\youco\Desktop\iLearN-platform\app\controller\impl\Student
 $enroll = new StudentModuleimpl();
 $studentId = $_SESSION["user"]["id"];
 $s = $enroll->getEnrolledCourses($studentId);
-// var_dump($s);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -167,7 +167,13 @@ $s = $enroll->getEnrolledCourses($studentId);
                     ?>
                     <div
                         class="bg-white border border-blue-600 rounded-lg shadow-md p-4 hover:scale-105 transition-transform">
+                        <?php if($cour->getimages()==null) { ?>
                         <img src="/assets/images/cover4.png" alt="Course Image" class="rounded-t-lg w-full">
+                        <?php  } ?>
+                        <?php if($cour->getimages()!=null) { ?>
+                            <img src="<?= $cour->getImages() ?>" alt="Course Image" class="rounded-t-lg w-full">
+                        <?php  } ?>
+
                         <div class="py-3">
                             <p class="text-sm text-gray-500 flex items-center space-x-2">
                                 <span><i class="ri-file-list-line"></i> 3 Curriculum</span>
@@ -176,6 +182,7 @@ $s = $enroll->getEnrolledCourses($studentId);
                             <h3 class="text-lg font-semibold text-gray-800 mt-2"></h3>
                             <p class="text-gray-600 text-sm mt-1">
                                 <?= $cour->gettitre() ?>
+                               
                             </p>
                             <div class="flex items-center justify-between mt-3">
                                 <p class="text-blue-600 font-bold">$49</p>

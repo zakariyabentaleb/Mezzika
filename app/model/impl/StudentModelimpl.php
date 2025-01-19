@@ -56,7 +56,10 @@ class StudentModuleimpl implements StudentModel
                 $course->titre,
                 $course->description,
                 $course->contenu,
-                $course->id 
+                $course->id,
+                null,
+                null,
+                $course->images
             );
             $courses[] = $course;
             

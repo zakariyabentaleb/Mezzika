@@ -5,7 +5,7 @@ $contrl = new Courcontrollerimpl();
 $id = $_GET["id"];
 $result = $contrl->getCourseById($id);
 $result2 = $contrl->getCourseTeacher($id);
-// var_dump($result);
+var_dump($result);
 // var_dump($result2);
 $result3 = $contrl->getCoursetags($id);
 // var_dump($result3);
@@ -170,7 +170,7 @@ $result3 = $contrl->getCoursetags($id);
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
                 <div class="flex">
                     <div class="rounded-lg overflow-hidden flex-grow">
-                        <img src="/assets/images/cover4.png" alt="" class="rounded-lg h-full object-cover w-full">
+                        <img src="<?php echo $cour->images; ?>" alt="" class="rounded-lg h-full object-cover w-full">
                     </div>
                 </div>
 

@@ -21,7 +21,7 @@ class CourModelimpl implements CourModel
         $descr = $cour->getDescription();
         $price = $cour->getPrice();
         $categoryId = $cour->getCategoryId();
-        $images = $cour->getImages();
+        $images = $cour->getimages();
         $contenu = $cour->getContenu();
         $videoUrl = $cour->getVideoUrl();
         $instructorId = $cour->getInstructorId();
@@ -157,16 +157,25 @@ class CourModelimpl implements CourModel
 
     public function getCourseById($id): array
     {
-        $query = "SELECT c.*, 
-                         cat.name AS category_name, 
-                         COUNT(e.studentId) AS student_count
-                  FROM courses c
-                  LEFT JOIN categories cat ON c.categoryId = cat.id
-                  LEFT JOIN enrollment e ON e.courseId = c.id
-                  WHERE c.id = :id
-                  GROUP BY c.id, c.titre, c.description, c.price, c.categoryId, 
-                           c.images, c.contenu, c.videoUrl, c.createdDate, 
-                           c.instructorId, c.Difficulty, c.Duration, cat.name";
+           $query = "SELECT 
+         c.*, 
+         cat.name AS category_name, 
+         u.nom AS instructor_name, 
+           COUNT(e.studentId) AS student_count
+          FROM 
+          courses c
+         LEFT JOIN 
+           categories cat ON c.categoryId = cat.id
+         LEFT JOIN 
+         users u ON c.instructorId = u.id
+         LEFT JOIN 
+        enrollment e ON e.courseId = c.id
+         WHERE 
+          c.id = :id
+          GROUP BY 
+    c.id, c.titre, c.description, c.price, c.categoryId, 
+    c.images, c.contenu, c.videoUrl, c.createdDate, 
+    c.instructorId, c.Difficulty, c.Duration, cat.name, u.nom ";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
