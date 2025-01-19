@@ -2,7 +2,7 @@
 
 require_once 'C:\Users\youco\Desktop\iLearN-platform\app\model\CourModel.php';
 require_once 'C:\Users\youco\Desktop\iLearN-platform\app\config\Database.php';
-
+require_once('C:\Users\youco\Desktop\iLearN-platform\app\entities\Cours.php');
 class CourModelimpl implements CourModel
 {
 
@@ -72,33 +72,31 @@ class CourModelimpl implements CourModel
     public function searchCour(string $titre): array
     {
         $query = "
-            SELECT DISTINCT Cours.*, user.*, categorie.* 
-            FROM wiki 
-            JOIN user ON wiki.idUser = user.userId 
-            JOIN categorie ON wiki.idCategorie = categorie.categorieId 
-            WHERE wiki.wikiTitre LIKE CONCAT('%', ?, '%') 
-            OR categorie.categorieName LIKE CONCAT('%', ?, '%')
+            SELECT DISTINCT courses.*
+            FROM courses
+            WHERE courses.titre LIKE CONCAT('%', :titre, '%');
         ";
-
+    
         try {
             $stmt = $this->conn->prepare($query);
-            $stmt->execute([$titre, $titre]);
-            $results = $stmt->fetchAll();
-
-            $users = [];
-
-            foreach ($results as $userResult) {
-                $user = new User($userResult["email"], $userResult["password"], $userResult["name"]);
-
-                $users[] = $user;
-                // array_push($users, $user);
+            $stmt->bindParam(':titre', $titre, PDO::PARAM_STR); // Bind the title parameter properly
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch the results as an associative array
+    
+            $courses = [];
+    
+            foreach ($results as $courseResult) {
+                $course = new Cour($courseResult["titre"], $courseResult["description"], $courseResult["contenu"], $courseResult["id"]);
+                $courses[] = $course;
             }
-            return $users;
-
+    
+            return $courses;
+    
         } catch (Exception $e) {
-            throw new Exception("Error fetching users: " . $e->getMessage());
+            throw new Exception("Error fetching courses: " . $e->getMessage());
         }
     }
+    
 
     public function countCour(): int
     {

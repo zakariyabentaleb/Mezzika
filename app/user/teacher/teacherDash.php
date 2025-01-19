@@ -46,7 +46,7 @@ $resultss = $tags->getTags();
         <div class="container mx-auto px-4">
             <div class="flex items-center justify-between py-4">
                 <a href="../index.php">
-                    <img src="../assets/images/Youdemy_Logo.svg" alt="Youdemy Platform">
+                    <img src="../../../assets/images/LOGO.svg" alt="Youdemy Platform">
                 </a>
                 <nav class="hidden md:flex items-center space-x-6">
                     <?php ?>

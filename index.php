@@ -62,7 +62,8 @@
                         <?php
                         if (!isset($_SESSION["user"])) {
                             ?>
-                            <a href="./app/views/mycourses.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">My
+                            <a href="./app/views/mycourses.php"
+                                class="text-gray-900 hover:text-bg-blue-600 transition-colors">My
                                 Courses</a>
                             <?php
                         } else {
@@ -155,14 +156,14 @@
 
                     <!-- Search Bar -->
                     <div class="mt-8">
-                        <div class="relative">
-                            <input type="text" placeholder="What Do You Need To Learn?"
-                                class="w-full p-3 pl-4 rounded-full border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600">
-                            <button
-                                class="bg-blue-600 absolute right-1 top-1 bottom-1 px-4 bg-bg-blue-600 text-white rounded-full hover:bg-bg-blue-600">
+                        <form action="./app/views/search.php" method="GET" class="relative">
+                            <input type="text" name="query" placeholder="What Do You Need To Learn?"
+                                class="w-full p-3 pl-4 rounded-full border border-gray-300 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500">
+                            <button type="submit"
+                                class="bg-blue-400 absolute right-1 top-1 bottom-1 px-4 text-white rounded-full hover:bg-blue-500">
                                 Search
                             </button>
-                        </div>
+                        </form>
                     </div>
                     <div class="flex items-center flex justify-center space-x-2">
                         <span class="text-yellow-600 text-xl">
