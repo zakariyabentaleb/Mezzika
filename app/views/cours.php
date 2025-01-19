@@ -5,7 +5,7 @@ $contrl = new Courcontrollerimpl();
  //$result = $contrl->fetchCours();
 // var_dump($result);
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$itemsPerPage = 10;
+$itemsPerPage = 5;
 
 // Get courses for the current page
 $courses = $contrl->fetchCours($page);

@@ -1,5 +1,11 @@
 <?php
+require_once('C:\Users\youco\Desktop\iLearN-platform\app\model\impl\CourModelimpl.php');
 session_start();
+$course=new CourModelimpl();
+$courseId=$_GET["id"];
+$res=$course->getCourseById($courseId);
+var_dump($res);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

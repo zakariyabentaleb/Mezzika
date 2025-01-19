@@ -70,10 +70,16 @@ $count=$res->getCourseStatistics($teacherid);
                     } else {
 
                         ?>
-                        <a href="./logout.php"
-                            class="p-2 px-4 bg-red-400 text-white rounded-full hover:bg-white hover:text-red-400 hover:border hover:border-red-400 transition-colors">Logout</a>
-                        <a href="./logout.php"
-                            class="p-2 px-4 bg-red-400 text-white rounded-full hover:bg-white hover:text-red-400 hover:border hover:border-red-400 transition-colors"><?php echo $_SESSION['user']['nom'] ?></a>
+                        <form action="../../controller/base/baseController.php" method="POST">
+                                <button type="submit" name="logout"
+                                    class="p-2 px-4 bg-blue-600 text-white rounded-full hover:bg-white hover:text-blue-600 hover:border hover:border-blue-600 transition-colors">
+                                    Log out
+                                </button>
+                                <button
+                                    class="p-2 px-4 border border-blue-600 text-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition-colors">
+                                    <a href="../app/user/register.php"><?php echo $_SESSION['user']['nom'] ?></a>
+                                </button>
+                            </form>
 
                     <?php } ?>
                 </div>
