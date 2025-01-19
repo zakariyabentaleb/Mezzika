@@ -1,8 +1,18 @@
 <?php
 require_once('../controller/impl/Courcontrollerimpl.php');
+session_start();
 $contrl = new Courcontrollerimpl();
-$result = $contrl->fetchCours();
+ //$result = $contrl->fetchCours();
 // var_dump($result);
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$itemsPerPage = 10;
+
+// Get courses for the current page
+$courses = $contrl->fetchCours($page);
+
+// Get total number of courses to calculate total pages
+$totalCourses = $contrl->countCour();
+$totalPages = ceil($totalCourses / $itemsPerPage);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,9 +75,9 @@ $result = $contrl->fetchCours();
                         <a href="./pages/features.php"
                             class="text-gray-900 hover:text-bg-blue-600 transition-colors">Blog</a>
                         <?php
-                        if (!isset($_SESSION["user"])) {
+                        if (isset($_SESSION["user"])) {
                             ?>
-                            <a href="./pages/contact.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">My
+                            <a href="./mycourses.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">My
                                 Courses</a>
                             <?php
                         } else {
@@ -80,7 +90,6 @@ $result = $contrl->fetchCours();
                     </nav>
 
                     <?php
-                    session_start();
                     if (!isset($_SESSION["user"])) {
                         ?>
                         <div class="flex items-center space-x-4">
@@ -158,7 +167,7 @@ $result = $contrl->fetchCours();
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <?php
-                foreach ($result as $cour) {
+                foreach ($courses as $cour) {
 
 
 
@@ -208,6 +217,24 @@ $result = $contrl->fetchCours();
         </div>
 
     </section>
+    <div class="flex justify-center mt-6">
+    <nav class="flex gap-4">
+        <?php if ($page > 1): ?>
+            <a href="?page=1" class="text-blue-600">First</a>
+            <a href="?page=<?php echo $page - 1; ?>" class="text-blue-600">Previous</a>
+        <?php endif; ?>
+
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+            <a href="?page=<?php echo $i; ?>" class="text-blue-600 <?php echo $i == $page ? 'font-bold' : ''; ?>"><?php echo $i; ?></a>
+        <?php endfor; ?>
+
+        <?php if ($page < $totalPages): ?>
+            <a href="?page=<?php echo $page + 1; ?>" class="text-blue-600">Next</a>
+            <a href="?page=<?php echo $totalPages; ?>" class="text-blue-600">Last</a>
+        <?php endif; ?>
+    </nav>
+</div>
+
 
     <!-- Footer Section -->
 

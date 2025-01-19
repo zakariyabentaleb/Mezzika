@@ -8,9 +8,9 @@ require_once 'C:\Users\youco\Desktop\iLearN-platform\app\model\impl\CourModelimp
         $this->courModel = new CourModelimpl();
     }
 
-    public function fetchCours(): array|bool {
+    public function fetchCours($p): array|bool {
         try {
-            $result=$this->courModel->getAllCours();
+            $result=$this->courModel->getAllCours($p);
             return $result;
             
      
@@ -53,6 +53,17 @@ public function getCoursetags(int $id): array|bool {
     catch (Exception $e) {  
         return false ;
        }
+}
+public function countCour(): int {
+    try {    
+        $result=$this->courModel->countCour();
+        return $result;
+        } 
+    catch (Exception $e) {  
+        return false ;
+       }
+
+
 }
  }
 ?>

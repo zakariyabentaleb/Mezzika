@@ -12,7 +12,7 @@
 
     public function countCour(): int;
 
-    public function getAllCours(): array ;
+    public function getAllCours(int $page , int $itemsPerPage ): array ;
 
     public function getCourseById( int $id) : array ;
 

@@ -174,9 +174,9 @@ session_start();
     <!-- Breadcrumbs -->
     <div class="sm:px-6 lg:px-8 py-4">
         <div class="flex items-center space-x-2 text-sm text-gray-500">
-            <a href="../index.php" class="hover:text-gray-700">Home</a>
+            <a href="../../index.php" class="hover:text-gray-700">Home</a>
             <i class="ri-arrow-right-s-line"></i>
-            <a href="../pages/mycourses.php" class="hover:text-gray-700">My Courses</a>
+            <a href="./mycourses.php" class="hover:text-gray-700">My Courses</a>
             <i class="ri-arrow-right-s-line"></i>
             <span class="text-gray-700"> </span>
         </div>

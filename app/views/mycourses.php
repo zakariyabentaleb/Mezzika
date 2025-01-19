@@ -67,7 +67,7 @@ $s = $enroll->getEnrolledCourses($studentId);
                         <a href="./pages/features.php"
                             class="text-gray-900 hover:text-bg-blue-600 transition-colors">Blog</a>
                         <?php
-                        if (!isset($_SESSION["user"])) {
+                        if (isset($_SESSION["user"])) {
                             ?>
                             <a href="./pages/contact.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">My
                                 Courses</a>

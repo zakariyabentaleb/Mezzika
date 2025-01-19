@@ -15,7 +15,7 @@ class CourModelimpl implements CourModel
 
     public function addCour(Cour $cour)
     {
-        
+
         // Récupération des valeurs depuis l'objet Cour
         $titre = $cour->getTitre();
         $descr = $cour->getDescription();
@@ -39,25 +39,25 @@ class CourModelimpl implements CourModel
             ) VALUES (
                 :titre, :description, :price, :categoryId, :images, :contenu, :videoUrl,:instructorId ,:difficulty, :duration,:status
             )";
-    $stmt = $this->conn->prepare($query);
-    echo "fdgvgd";
-    
-    // Liaison des paramètres
-    $stmt->bindParam(":titre", $titre);
-    $stmt->bindParam(":description", $descr);
-    $stmt->bindParam(":price", $price);
-    $stmt->bindParam(":categoryId", $categoryId);
-    $stmt->bindParam(":images", $images);
-    $stmt->bindParam(":contenu", $contenu);
-    $stmt->bindParam(":videoUrl", $videoUrl);
-    $stmt->bindParam(":instructorId", $instructorId);
-    $stmt->bindParam(":difficulty", $difficulty);
-    $stmt->bindParam(":duration", $duration);
-    $stmt->bindParam(":status", $status);
-    
-    // Exécution de la requête
-    $stmt->execute();
-    echo "execute";
+            $stmt = $this->conn->prepare($query);
+            echo "fdgvgd";
+
+            // Liaison des paramètres
+            $stmt->bindParam(":titre", $titre);
+            $stmt->bindParam(":description", $descr);
+            $stmt->bindParam(":price", $price);
+            $stmt->bindParam(":categoryId", $categoryId);
+            $stmt->bindParam(":images", $images);
+            $stmt->bindParam(":contenu", $contenu);
+            $stmt->bindParam(":videoUrl", $videoUrl);
+            $stmt->bindParam(":instructorId", $instructorId);
+            $stmt->bindParam(":difficulty", $difficulty);
+            $stmt->bindParam(":duration", $duration);
+            $stmt->bindParam(":status", $status);
+
+            // Exécution de la requête
+            $stmt->execute();
+            echo "execute";
             return true;
         } catch (PDOException $e) {
             throw new Exception("Erreur lors de l'insertion du cours : " . $e->getMessage());
@@ -132,20 +132,27 @@ class CourModelimpl implements CourModel
 
     public function countCour(): int
     {
-        $query = "SELECT COUNT(*) AS CourCount FROM Cour";
+        $query = "SELECT COUNT(*) AS CourCount FROM courses";
         $statement = $this->conn->query($query);
         $result = $statement->fetch(PDO::FETCH_OBJ);
         return (int) $result->CourCount;
     }
 
-    public function getAllCours(): array
+    public function getAllCours(int $page , int $itemsPerPage = 6): array
     {
-        $query = "select * from courses";
-        $statement = $this->conn->query($query);
+        // Calculate the starting point for the query
+        $offset = ($page - 1) * $itemsPerPage;
+
+        // Modify the query to include pagination
+        $query = "SELECT * FROM courses LIMIT :limit OFFSET :offset";
+        $statement = $this->conn->prepare($query);
+        $statement->bindParam(':limit', $itemsPerPage, PDO::PARAM_INT);
+        $statement->bindParam(':offset', $offset, PDO::PARAM_INT);
+        $statement->execute();
+
         $result = $statement->fetchAll(PDO::FETCH_OBJ);
         return $result;
     }
-
 
 
     public function getCourseById($id): array
