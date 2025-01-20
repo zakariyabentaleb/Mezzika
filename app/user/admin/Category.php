@@ -33,7 +33,7 @@ $result2 = $contrl->getCategories();
                 </a>
             </li>
             <li class="mb-1 group">
-                <a href="./categories.php"
+                <a href="./Category.php"
                     class="flex items-center py-2 px-4 text-blue-100 hover:bg-blue-700 hover:text-white rounded-md">
                     <i class="ri-file-copy-2-fill mr-3 text-lg"></i>
                     <span class="text-sm">Categories</span>
@@ -48,7 +48,7 @@ $result2 = $contrl->getCategories();
                 </a>
             </li>
             <li class="mb-1 group">
-                <a class="flex items-center py-2 px-4 text-blue-100 hover:bg-blue-700 hover:text-white rounded-md">
+                <a  href="./Tags.php" class="flex items-center py-2 px-4 text-blue-100 hover:bg-blue-700 hover:text-white rounded-md">
                     <i class="ri-bookmark-line mr-3 text-lg"></i>
                     <span class="text-sm">Tags</span>
                     <i class="ri-arrow-right-s-line ml-auto"></i>

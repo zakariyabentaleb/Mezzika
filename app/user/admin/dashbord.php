@@ -52,7 +52,7 @@ $result2 = $UserModelimpl->fetchUsersByRole($role2);
             </li>
 
             <li class="mb-1 group">
-                <a class="flex items-center py-2 px-4 text-blue-100 hover:bg-blue-700 hover:text-white rounded-md">
+                <a   href ="./Tags.php" class="flex items-center py-2 px-4 text-blue-100 hover:bg-blue-700 hover:text-white rounded-md">
                     <i class="ri-bookmark-line mr-3 text-lg"></i>
                     <span class="text-sm">Tags</span>
                     <i class="ri-arrow-right-s-line ml-auto"></i>
@@ -113,12 +113,6 @@ $result2 = $UserModelimpl->fetchUsersByRole($role2);
                                 <div class="ml-4">
                                     <!-- Student Details -->
                                     <h2 class="text-xl font-bold text-gray-800 mb-1"><?= $res->getName() ?></h2>
-                                    <p class="text-gray-600 text-sm">
-                                        <span class="font-semibold text-gray-800">Age:</span> 20
-                                    </p>
-                                    <p class="text-gray-600 text-sm">
-                                        <span class="font-semibold text-gray-800">Major:</span> Computer Science
-                                    </p>
                                 </div>
                             </div>
 
@@ -166,12 +160,6 @@ $result2 = $UserModelimpl->fetchUsersByRole($role2);
                                 <div class="ml-4">
                                     <!-- Student Details -->
                                     <h2 class="text-xl font-bold text-gray-800 mb-1"><?= $res2->getName() ?></h2>
-                                    <p class="text-gray-600 text-sm">
-                                        <span class="font-semibold text-gray-800">Age:</span> 20
-                                    </p>
-                                    <p class="text-gray-600 text-sm">
-                                        <span class="font-semibold text-gray-800">Major:</span> Computer Science
-                                    </p>
                                 </div>
                             </div>
 
@@ -191,33 +179,7 @@ $result2 = $UserModelimpl->fetchUsersByRole($role2);
                     ?>
                 </div>
                 <!-- Cours Card -->
-                <div class="bg-white rounded-md border border-blue-200 p-6 shadow-md">
-                    <div class="flex justify-between mb-4">
-                        <div>
-                            <div class="flex items-center mb-1">
-                                <div class="text-2xl font-semibold"><i class="ri-group-fill"></i></div>
-                                <div
-                                    class="p-1 rounded bg-blue-100 text-blue-600 text-[12px] font-semibold leading-none ml-2">
-                                    Cours</div>
-                            </div>
-                            <div class="text-sm font-medium text-blue-400">Cours Details</div>
-                        </div>
-                    </div>
-                    <!-- Cours Information -->
-                    <div class="mt-4">
-                        <p class="text-gray-600 text-sm">
-                            <span class="font-bold text-gray-800">Title:</span> Introduction to AI
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <span class="font-bold text-gray-800">Credits:</span> 3
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <span class="font-bold text-gray-800">Instructor:</span> Prof. Alan Turing
-                        </p>
-                        <a href="#" class="text-blue-500 text-sm font-medium hover:text-blue-600 mt-2 inline-block">View
-                            Details</a>
-                    </div>
-                </div>
+               
             </div>
         </div>
     </main>
