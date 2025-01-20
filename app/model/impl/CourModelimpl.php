@@ -16,7 +16,7 @@ class CourModelimpl implements CourModel
     public function addCour(Cour $cour)
     {
 
-        // Récupération des valeurs depuis l'objet Cour
+        
         $titre = $cour->getTitre();
         $descr = $cour->getDescription();
         $price = $cour->getPrice();
@@ -42,7 +42,7 @@ class CourModelimpl implements CourModel
             $stmt = $this->conn->prepare($query);
             echo "fdgvgd";
 
-            // Liaison des paramètres
+          
             $stmt->bindParam(":titre", $titre);
             $stmt->bindParam(":description", $descr);
             $stmt->bindParam(":price", $price);
@@ -55,7 +55,7 @@ class CourModelimpl implements CourModel
             $stmt->bindParam(":duration", $duration);
             $stmt->bindParam(":status", $status);
 
-            // Exécution de la requête
+          
             $stmt->execute();
             echo "execute";
             return true;
@@ -67,9 +67,9 @@ class CourModelimpl implements CourModel
     }
 
 
-    public function updateCour(Cour $cour): void
+    public function updateCour(Cour $cour) : void
     {
-        // Requête de mise à jour de toutes les colonnes
+       
         $query = "
             UPDATE courses 
             SET 
@@ -88,10 +88,10 @@ class CourModelimpl implements CourModel
             WHERE id = :id";
     
         try {
-            // Préparer la requête
+           
             $stmt = $this->conn->prepare($query);
     
-            // Exécuter la requête avec les valeurs des paramètres
+           
             $stmt->execute(
                 [
                     ':courtitre' => $cour->gettitre(),
@@ -106,7 +106,7 @@ class CourModelimpl implements CourModel
                     ':createdDate' => $cour->getCreatedDate(),
                     ':instructorId' => $cour->getInstructorId(),
                     ':status' => $cour->getStatus(),
-                    ':id' => $cour->getId() // Assurez-vous de mettre à jour le cours par ID
+                    ':id' => $cour->getId()
                 ]
             );
         } catch (Exception $e) {
@@ -133,9 +133,9 @@ class CourModelimpl implements CourModel
 
         try {
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':titre', $titre, PDO::PARAM_STR); // Bind the title parameter properly
+            $stmt->bindParam(':titre', $titre, PDO::PARAM_STR); 
             $stmt->execute();
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch the results as an associative array
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC); 
 
             $courses = [];
 
@@ -237,7 +237,28 @@ class CourModelimpl implements CourModel
         return $stmt->fetchAll(PDO::FETCH_OBJ);
 
     }
+    public function getAllCour(): array {
+        try {
+           
+            $query = "select * from courses inner join  users on courses.instructorId=users.id;";
+            
+           
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+    
+          
+            $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+          
+            return $courses;
+        } catch (PDOException $e) {
+           
+            throw new Exception("Erreur lors de la récupération des cours : " . $e->getMessage());
+        }
+    }
+    
+    }
 
-}
+
 
 ?>

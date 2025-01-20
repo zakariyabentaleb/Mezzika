@@ -50,7 +50,7 @@ $count=$res->getCourseStatistics($teacherid);
     <header class="border-b bg-white">
         <div class="container mx-auto px-4">
             <div class="flex items-center justify-between py-4">
-                <a href="../index.php">
+                <a href="../../../index.php">
                     <img src="../../../assets/images/LOGO.svg" alt="Youdemy Platform">
                 </a>
                 <nav class="hidden md:flex items-center space-x-6">
@@ -71,9 +71,7 @@ $count=$res->getCourseStatistics($teacherid);
 
                         ?>
                         <form action="../../controller/base/baseController.php" method="POST">
-                                <button type="submit" name="logout"
-                                    class="p-2 px-4 bg-blue-600 text-white rounded-full hover:bg-white hover:text-blue-600 hover:border hover:border-blue-600 transition-colors">
-                                    Log out
+                                <button type="submit" name="logout" >  
                                 </button>
                                 <button
                                     class="p-2 px-4 border border-blue-600 text-blue-600 rounded-full hover:bg-blue-600 hover:text-white transition-colors">
@@ -83,6 +81,7 @@ $count=$res->getCourseStatistics($teacherid);
 
                     <?php } ?>
                 </div>
+                
             </div>
         </div>
     </header>
@@ -149,6 +148,13 @@ $count=$res->getCourseStatistics($teacherid);
                     <i class="ri-add-line mr-2"></i>
                     New Course
                 </button>
+                <form action="../../controller/base/baseController.php" method="POST">
+                                <button type="submit" name="logout"
+                                    class="p-2 px-4 bg-blue-600 text-white rounded-full hover:bg-white hover:text-blue-600 hover:border hover:border-blue-600 transition-colors">
+                                    Log out
+                                </button>
+                                
+                            </form>
             </div>
 
             <div class="border-t border-gray-200">
@@ -395,8 +401,8 @@ $count=$res->getCourseStatistics($teacherid);
                 </form>
             </div>
         </div>
-        </>
-
+    </div>
+   
 </body>
 
 </html>

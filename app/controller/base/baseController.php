@@ -7,6 +7,7 @@ require_once "../../entities/Teacher.php";
 require_once 'C:\Users\youco\Desktop\iLearN-platform\app\enums\Role.php';
 session_start();
 $userController = new UserControllerimpl();
+var_dump($_POST); 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     ///////////  UserProcess   //////////
 

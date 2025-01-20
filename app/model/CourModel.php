@@ -14,6 +14,8 @@
 
     public function getAllCours(int $page , int $itemsPerPage ): array ;
 
+    public function getAllCour( ): array ;
+
     public function getCourseById( int $id) : array ;
 
     public function getCourseTeacher(  int $id) : array ;

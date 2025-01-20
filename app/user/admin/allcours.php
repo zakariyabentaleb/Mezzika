@@ -2,9 +2,9 @@
 require_once('C:\Users\youco\Desktop\iLearN-platform\app\controller\impl\Courcontrollerimpl.php');
 require_once('C:\Users\youco\Desktop\iLearN-platform\app\enums\Role.php');
 $contrl = new Courcontrollerimpl();
-$result2 = $contrl->fetchCours();
+$result2 = $contrl->getAllCour();
 // var_dump($result);
-// var_dump($result2);
+ //var_dump($result2);
 // var_dump($result2);
 ?>
 <!DOCTYPE html>
@@ -34,21 +34,25 @@ $result2 = $contrl->fetchCours();
                 </a>
             </li>
             <li class="mb-1 group">
-                <a class="flex items-center py-2 px-4 text-blue-100 hover:bg-blue-700 hover:text-white rounded-md">
+                <a  href="./Category.php"
+                class="flex items-center py-2 px-4 text-blue-100 hover:bg-blue-700 hover:text-white rounded-md">
                     <i class="ri-file-copy-2-fill mr-3 text-lg"></i>
                     <span class="text-sm">Categories</span>
                     <i class="ri-arrow-right-s-line ml-auto"></i>
                 </a>
             </li>
             <li class="mb-1 group">
-                <a class="flex items-center py-2 px-4 text-blue-100 hover:bg-blue-700 hover:text-white rounded-md">
+                <a href="./allcours.php"
+                class="flex items-center py-2 px-4 text-blue-100 hover:bg-blue-700 hover:text-white rounded-md">
                     <i class="ri-file-copy-2-fill mr-3 text-lg"></i>
                     <span class="text-sm">Cours</span>
                     <i class="ri-arrow-right-s-line ml-auto"></i>
                 </a>
             </li>
             <li class="mb-1 group">
-                <a class="flex items-center py-2 px-4 text-blue-100 hover:bg-blue-700 hover:text-white rounded-md">
+                
+                <a href="./Tags.php"
+                class="flex items-center py-2 px-4 text-blue-100 hover:bg-blue-700 hover:text-white rounded-md">
                     <i class="ri-bookmark-line mr-3 text-lg"></i>
                     <span class="text-sm">Tags</span>
                     <i class="ri-arrow-right-s-line ml-auto"></i>
@@ -92,7 +96,7 @@ $result2 = $contrl->fetchCours();
                     <div class="flex justify-between mb-4">
                         <div>
                             <div class="flex items-center mb-1">
-                                <div class="text-2xl font-semibold"><i class="ri-group-fill"></i></div>
+                             
                                 <div
                                     class="p-1 rounded bg-blue-100 text-blue-600 text-[12px] font-semibold leading-none ml-2">
                                     Cours</div>
@@ -103,21 +107,21 @@ $result2 = $contrl->fetchCours();
                     <!-- Cours Information -->
                     <div class="mt-4">
                         <p class="text-gray-600 text-sm">
-                            <span class="font-bold text-gray-800">Title:</span> <?= $resl->titre ?>
+                            <span class="font-bold text-gray-800">Title:</span> <?=  $resl['titre'] ?>
                         </p>
                         <p class="text-gray-600 text-sm">
-                            <span class="font-bold text-gray-800">Credits:</span> 3
+                            <span class="font-bold text-gray-800">price : </span> <?=  $resl['price'] ?>
                         </p>
                         <p class="text-gray-600 text-sm">
-                            <span class="font-bold text-gray-800">Instructor:</span> Prof. Alan Turing
+                            <span class="font-bold text-gray-800">Instructor:</span> <?=  $resl['nom'] ?>
                         </p>
-                        <a href="#" class="text-blue-500 text-sm font-medium hover:text-blue-600 mt-2 inline-block">View
-                            Details</a>
+                        
                     </div>
                 </div>
                 <?php
                  }
                  ?>
+        
             </div>
         </div>
     </main>

@@ -20,6 +20,6 @@ class Category {
     public function setnom(string $nom): void {
         $this->nom = $nom;
     }
-
+    
 }
 ?>

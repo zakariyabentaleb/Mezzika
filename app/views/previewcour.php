@@ -5,7 +5,7 @@ $contrl = new Courcontrollerimpl();
 $id = $_GET["id"];
 $result = $contrl->getCourseById($id);
 $result2 = $contrl->getCourseTeacher($id);
-var_dump($result);
+//var_dump($result);
 // var_dump($result2);
 $result3 = $contrl->getCoursetags($id);
 // var_dump($result3);

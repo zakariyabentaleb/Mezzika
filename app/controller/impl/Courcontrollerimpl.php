@@ -65,5 +65,14 @@ public function countCour(): int {
 
 
 }
+ public function getAllCour(): array|bool {
+    try {    
+        $result=$this->courModel->getAllCour();
+        return $result;
+        } 
+    catch (Exception $e) {  
+        return false ;
+       }
+ }
  }
 ?>
