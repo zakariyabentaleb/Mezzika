@@ -126,6 +126,25 @@ class TeacherModelimpl implements TeacherModel
         }
     }
 
+    public function deleteTeacher(string $nom) : bool {
+        try {
+            $query = "DELETE FROM users WHERE nom = :name";
+            $stmt = $this->conn->prepare($query);
+    
+          
+            $stmt->bindParam(':name', $nom, PDO::PARAM_STR);
+    
+            
+            $result = $stmt->execute();
+    
+           
+            return $result;
+    
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
 }
 
 

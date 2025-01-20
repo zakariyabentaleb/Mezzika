@@ -6,5 +6,7 @@ interface TeacherModel {
     public function getCoursesWithDetails(int $instructorId):array ;
      
     function getCourseStatistics(int $instructorId): array ;
+
+    public function deleteTeacher(string $nom) : bool;
 }
 ?>

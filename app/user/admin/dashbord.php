@@ -36,7 +36,7 @@ $result2 = $UserModelimpl->fetchUsersByRole($role2);
                 </a>
             </li>
             <li class="mb-1 group">
-                <a class="flex items-center py-2 px-4 text-blue-100 hover:bg-blue-700 hover:text-white rounded-md">
+                <a  href ="./Category.php" class="flex items-center py-2 px-4 text-blue-100 hover:bg-blue-700 hover:text-white rounded-md">
                     <i class="ri-file-copy-2-fill mr-3 text-lg"></i>
                     <span class="text-sm">Categories</span>
                     <i class="ri-arrow-right-s-line ml-auto"></i>
@@ -127,7 +127,7 @@ $result2 = $UserModelimpl->fetchUsersByRole($role2);
                                 <div class="flex justify-end">
                                     <button
                                         class="bg-red-500 hover:bg-red-600 text-white text-sm px-5 py-2 rounded-full shadow-lg transform transition-transform hover:scale-105"
-                                        onclick="StudentDelete('<?= $res->getName() ?>')">
+                                        onclick="TeacherDelete('<?= $res->getName() ?>')">
                                         Supprimer
                                     </button>
                                 </div>
