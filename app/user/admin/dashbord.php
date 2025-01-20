@@ -1,12 +1,16 @@
 <?php
 require_once('C:\Users\youco\Desktop\iLearN-platform\app\controller\impl\UserControllerimpl.php');
 require_once('C:\Users\youco\Desktop\iLearN-platform\app\enums\Role.php');
+
 $UserModelimpl = new UserModelimpl();
 $role = 'teacher';
 $role2 = 'student';
 $result = $UserModelimpl->fetchUsersByRole($role);
 $result2 = $UserModelimpl->fetchUsersByRole($role2);
 //var_dump($result2);
+// $_SESSION['user']['role'] = $role;
+// echo $role;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -108,7 +112,7 @@ $result2 = $UserModelimpl->fetchUsersByRole($role2);
                                 <!-- Student Image -->
                                 <div
                                     class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center shadow-inner">
-                                    <img src="https://placehold.co/64x64" alt="Student" class="rounded-full">
+                                    <img src="../../../assets/images/Anonymous-Profile-pic.jpg" alt="Student" class="rounded-full">
                                 </div>
                                 <div class="ml-4">
                                     <!-- Student Details -->
@@ -155,7 +159,8 @@ $result2 = $UserModelimpl->fetchUsersByRole($role2);
                                 <!-- Student Image -->
                                 <div
                                     class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center shadow-inner">
-                                    <img src="https://placehold.co/64x64" alt="Student" class="rounded-full">
+                                    <img src="../../../assets/images/Anonymous-Profile-pic.jpg" alt="Student" class="rounded-full">
+                                   
                                 </div>
                                 <div class="ml-4">
                                     <!-- Student Details -->

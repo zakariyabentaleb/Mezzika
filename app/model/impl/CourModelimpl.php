@@ -69,29 +69,51 @@ class CourModelimpl implements CourModel
 
     public function updateCour(Cour $cour): void
     {
-
-
-
-        $query = "UPDATE Cours SET titre = :courtitre, description = :courdescription, contenu = :courContent , image = :image ";
-
-
+        // Requête de mise à jour de toutes les colonnes
+        $query = "
+            UPDATE courses 
+            SET 
+                titre = :courtitre, 
+                description = :courdescription, 
+                contenu = :courContent,
+                images = :image,
+                price = :price,
+                categoryId = :categoryId,
+                Difficulty = :difficulty,
+                Duration = :duration,
+                videoUrl = :videoUrl,
+                createdDate = :createdDate,
+                instructorId = :instructorId,
+                status = :status
+            WHERE id = :id";
+    
         try {
+            // Préparer la requête
             $stmt = $this->conn->prepare($query);
-
+    
+            // Exécuter la requête avec les valeurs des paramètres
             $stmt->execute(
                 [
                     ':courtitre' => $cour->gettitre(),
                     ':courdescription' => $cour->getdescription(),
                     ':courContent' => $cour->getcontenu(),
-                    ':image' => $cour->getimages()
-
+                    ':image' => $cour->getimages(),
+                    ':price' => $cour->getPrice(),
+                    ':categoryId' => $cour->getCategoryId(),
+                    ':difficulty' => $cour->getDifficulty(),
+                    ':duration' => $cour->getDuration(),
+                    ':videoUrl' => $cour->getVideoUrl(),
+                    ':createdDate' => $cour->getCreatedDate(),
+                    ':instructorId' => $cour->getInstructorId(),
+                    ':status' => $cour->getStatus(),
+                    ':id' => $cour->getId() // Assurez-vous de mettre à jour le cours par ID
                 ]
             );
-
         } catch (Exception $e) {
-            throw new Exception("error while saving user into database");
+            throw new Exception("Error while saving course into database: " . $e->getMessage());
         }
     }
+    
 
     public function deleteCour(int $id): void
     {
@@ -161,9 +183,14 @@ class CourModelimpl implements CourModel
          c.*, 
          cat.name AS category_name, 
          u.nom AS instructor_name, 
-           COUNT(e.studentId) AS student_count
+           COUNT(e.studentId) AS student_count,
+           GROUP_CONCAT(DISTINCT tags.name) AS tag_names
           FROM 
           courses c
+          left join 
+          coursetag on  c.id=coursetag.courseId
+          left join 
+          tags on coursetag.tagId=tags.id
          LEFT JOIN 
            categories cat ON c.categoryId = cat.id
          LEFT JOIN 

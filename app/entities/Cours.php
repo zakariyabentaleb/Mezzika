@@ -8,7 +8,7 @@ class Cour
     private ?string $images;
     private ?string $contenu;
     private $total_rows;
-    private ?float $price;
+    private  $price;
     private ?int $categoryId;
     private ?string $videoUrl;
     private ?string $createdDate;
@@ -17,7 +17,7 @@ class Cour
     private ?string $duration;
     private ?string $status;
 
-    public function __construct($titre, $description, $contenu=null, $id = null, $price = null, $categoryId = null, $images = null, $videoUrl = null, $createdDate = null, $instructorId = null, $difficulty = null, $duration = null, $status = null)
+    public function __construct($titre, $description, $contenu=null, $id = null,   $price = null, $categoryId = null, $images = null, $videoUrl = null, $createdDate = null, $instructorId = null, $difficulty = null, $duration = null, $status = null)
     {
         $this->id = $id;
         $this->titre = $titre;

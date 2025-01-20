@@ -59,7 +59,7 @@ $s = $enroll->getEnrolledCourses($studentId);
                         <a href="../../index.php"
                             class="text-gray-900   hover:text-bg-blue-600 transition-colors">Home</a>
                         <a href="/app/views/cours.php"
-                            class="text-blue-600 font-bold hover:text-bg-blue-600 transition-colors">Courses</a>
+                            class="text-gray-900  hover:text-bg-blue-600 transition-colors">Courses</a>
                         <a href="./pages/pricing.php"
                             class="text-gray-900 hover:text-bg-blue-600 transition-colors">Pricing</a>
                         <a href="./pages/features.php"
@@ -69,7 +69,7 @@ $s = $enroll->getEnrolledCourses($studentId);
                         <?php
                         if (isset($_SESSION["user"])) {
                             ?>
-                            <a href="./pages/contact.php" class="text-gray-900 hover:text-bg-blue-600 transition-colors">My
+                            <a href="./pages/contact.php" class="text-blue-600 font-bold hover:text-bg-blue-600 transition-colors">My
                                 Courses</a>
                             <?php
                         } else {

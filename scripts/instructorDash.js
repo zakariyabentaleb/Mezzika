@@ -191,4 +191,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (confirm("Are you sure you want to delete this Teacher?")) {
         window.location.href = '../admin/deleteteacher.php?name=' + nom;
     }
+    
   }
+  function edit(courseId) {
+        window.location.href = '../teacher/editcourse.php?id=' + courseId;
+    }

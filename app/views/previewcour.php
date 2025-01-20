@@ -187,7 +187,17 @@ $result3 = $contrl->getCoursetags($id);
                         <div class="flex items-center justify-between py-2 border-b">
                             <div class="flex items-center gap-2">
                                 <i class="ri-layout-grid-line"></i>
-                                <span>Category</span>
+                                <span>Category :</span>
+                                <p><?= $cour->category_name ?></p>
+                            </div>
+                            <span></span>
+                        </div>
+
+                        <div class="flex items-center justify-between py-2 border-b">
+                            <div class="flex items-center gap-2">
+                                <i class="ri-layout-grid-line"></i>
+                                <span>Tags :</span>
+                                <p><?= $cour->tag_names ?></p>
                             </div>
                             <span></span>
                         </div>

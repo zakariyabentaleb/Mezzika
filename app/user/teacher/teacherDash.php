@@ -4,14 +4,14 @@ require_once('C:\Users\youco\Desktop\iLearN-platform\app\model\impl\CategoryMode
 require_once('C:\Users\youco\Desktop\iLearN-platform\app\model\impl\TagModelimpl.php');
 
 session_start();
-// if ($_SESSION['user']['role'] != 'teacher') {
-//     header('Location: ../index.php');
-// }
+if ($_SESSION['user']['role'] != 'teacher') {
+     header('Location: ../index.php');
+ }
 $res = new TeacherModelimpl();
 $teacherid = $_SESSION['user']['id'];
 $course = $res->getCoursesWithDetails($teacherid);
 // var_dump($course);
- $Course=$res->getEnrolledStudentsCount($teacherid);
+$Course=$res->getEnrolledStudentsCount($teacherid);
 $categories = new CategoryModelimpl();
 $results = $categories->getCategories();
 // var_dump($results);
@@ -198,7 +198,8 @@ $count=$res->getCourseStatistics($teacherid);
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <button class="text-blue-600 hover:text-blue-900 mr-4">
+                                    <button class="text-blue-600 hover:text-blue-900 mr-4"
+                                       onclick="edit(<?php echo $cours->getId(); ?>)">
                                         <i class="ri-edit-line text-lg"></i>
                                     </button>
                                     <button class="text-red-600 hover:text-red-900"

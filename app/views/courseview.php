@@ -4,7 +4,7 @@ session_start();
 $course = new CourModelimpl();
 $courseId = $_GET["id"];
 $res = $course->getCourseById($courseId);
-var_dump($res);
+//var_dump($res);
 
 ?>
 <!DOCTYPE html>
@@ -210,9 +210,10 @@ var_dump($res);
                                 <div class="flex items-center justify-between py-2 ">
                                     <div class="flex items-center gap-2">
                                         <i class="ri-layout-grid-line text-blue-400"></i>
-                                        <span>Category</span>
+                                        <span>Category :</span>
+                                        <span><?= htmlspecialchars( $res[0]->category_name ?? 'GENERAL') ?></span>
                                     </div>
-                                    <span> </span>
+                                    
                                 </div>
 
                                 <div class="flex items-center justify-between py-2 ">
@@ -299,7 +300,7 @@ var_dump($res);
                             <div class="flex items-center justify-between py-2 ">
                                 <div class="flex items-center gap-2">
                                     <i class="ri-layout-grid-line text-blue-400"></i>
-                                    <span>Category</span>
+                                    <span>Category </span>
                                 </div>
                                 <span><?= htmlspecialchars($res[0]->category_name ?? 'General') ?></span>
                             </div>
