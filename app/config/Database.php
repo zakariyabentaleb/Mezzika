@@ -4,12 +4,13 @@ require_once 'env.php';
 
 class Database {
 
-    private static ?Database $instance = null; 
+    private static ?Database $instance = null;
     private PDO $pdo;
 
     private function __construct() {
         try {
-            $this->pdo = new PDO("mysql:host=" . DB_URL . ";dbname=" . DB_NAME, USERNAME, DB_PASSWORD);
+          
+            $this->pdo = new PDO("pgsql:host=" . DB_URL . ";port=" . DB_PORT . ";dbname=" . DB_NAME, USERNAME, DB_PASSWORD);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
@@ -20,7 +21,7 @@ class Database {
 
     public static function getInstance(): Database {
         if (self::$instance === null) {
-            self::$instance = new Database(); 
+            self::$instance = new Database();
         }
         return self::$instance;
     }

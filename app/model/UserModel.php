@@ -1,4 +1,5 @@
 <?php
+
 interface UserModel
 {
     public function save(User $user): bool;

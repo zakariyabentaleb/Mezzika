@@ -14,10 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $duration = intval($_POST['duration_hours']);
     $categoryId = intval($_POST['category']);
 
-    echo var_dump($price);
-
-
-    // Gestion des fichiers téléchargés
+   
     $uploadsDir = '../../../uploads/';
     $thumbnail = null;
     if (!empty($_FILES['file-upload-thumbnail']['name'])) {
@@ -37,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     try {
         $course=new Cour($courseId, $title, $description, $price, $difficulty, $duration, $categoryId, $thumbnail, $contentFile);
-        echo var_dump($course);
+     
         $courseModel->updateCour($course);
 
         $_SESSION['course_message'] = "Le cours a été mis à jour avec succès.";

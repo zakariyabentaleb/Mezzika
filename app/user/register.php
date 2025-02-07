@@ -103,8 +103,8 @@
                      <select name="role" required
                         class="w-full pl-12 pr-4 py-2 border border-gray-300 rounded-lg bg-white/10 text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400">
                         <option value="role" disabled selected>Select Role</option>
-                        <option value="student">student</option>
-                        <option value="teacher">teacher</option>
+                        <option value="student">artist</option>
+                        <option value="teacher">user</option>
                      </select>
                   </div>
                   <button type="submit" name="register"

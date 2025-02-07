@@ -1,7 +1,7 @@
 <?php
 require_once '../../entities/User.php';
-require_once '../../entities/Student.php';
-require_once '../../entities/Teacher.php';
+require_once '../../entities/Melophile.php';
+require_once '../../entities/Artist.php';
 require_once '../../enums/Role.php';
 require_once '../../model/UserModel.php';
 require_once '../../model/impl/UserModelimpl.php';
@@ -16,15 +16,15 @@ class UserControllerimpl
     }
 
     
-    public function save(Student|Teacher $person): bool
+    public function save(Artist|Teacher $person): bool
     {
         try{
-            if ($person->getRole()=='student'){
-                $person= new Student($_POST["email"], $_POST["password"], $_POST["name"], Role::from($_POST["role"])) ;
+            if ($person->getRole()=='artist'){
+                $person= new Artist($_POST["email"], $_POST["password"], $_POST["name"], Role::from($_POST["role"])) ;
     
             }
-            else if ($person->getRole()=='teacher'){
-                $person= new Teacher($_POST["email"], $_POST["password"], $_POST["name"], Role::from($_POST["role"])) ;
+            else if ($person->getRole()=='user'){
+                $person= new Melophile($_POST["email"], $_POST["password"], $_POST["name"], Role::from($_POST["role"])) ;
             }
             
                return  $this->userModel->save($person);

@@ -1,6 +1,6 @@
 <?php
-require_once 'C:/Users/youco/Desktop/iLearN-platform/app/model/UserModel.php';
-require_once 'C:/Users/youco/Desktop/iLearN-platform/app/config/Database.php';
+require_once 'C:/Users/youco/Desktop/MEZZIKA/app/model/UserModel.php';
+require_once 'C:/Users/youco/Desktop/MEZZIKA/app/config/Database.php';
 
 class UserModelimpl implements UserModel
 {
@@ -14,7 +14,7 @@ class UserModelimpl implements UserModel
     public function save(User $user): bool
     {
 
-        $query = "INSERT INTO users (nom , email, password , role) values (:name , :email, :password , :role)";
+        $query = "INSERT INTO users (username , email, password , role) values (:name , :email, :password , :role)";
 
         try {
             $stmt = $this->conn->prepare($query);
@@ -46,7 +46,7 @@ class UserModelimpl implements UserModel
             $users = [];
 
             foreach ($results as $userResult) {
-                $user = new User($userResult["email"], $userResult["password"], $userResult["name"], Role::from($userResult["role"]));
+                $user = new User($userResult["email"], $userResult["password"], $userResult["username"], Role::from($userResult["role"]));
 
                 $users[] = $user;
                 // array_push($users, $user);
@@ -71,7 +71,7 @@ class UserModelimpl implements UserModel
             $users = [];
 
             foreach ($results as $userResult) {
-                $user = new User($userResult["email"], $userResult["password"], $userResult["nom"], Role::from($userResult["role"]));
+                $user = new User($userResult["email"], $userResult["password"], $userResult["username"], Role::from($userResult["role"]));
 
                 $users[] = $user;
                 // array_push($users, $user);
@@ -110,7 +110,7 @@ class UserModelimpl implements UserModel
     }
     public function countUser(): int
     {
-        $query = "SELECT COUNT(*) AS usersCount FROM users WHERE role = 'student'";
+        $query = "SELECT COUNT(*) AS usersCount FROM users WHERE role = 'user'";
         $statement = $this->conn->prepare($query);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_OBJ);

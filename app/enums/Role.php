@@ -2,8 +2,8 @@
 
 enum Role: string
 {
-    case STUDENT = "student";
-    case TEACHER = "teacher";
+    case STUDENT = "user";
+    case TEACHER = "artist";
     case ADMIN = "admin";
 }
 ?>

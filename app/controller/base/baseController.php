@@ -2,9 +2,9 @@
 
 require_once "../impl/UserControllerimpl.php";
 require_once "../../entities/User.php";
-require_once "../../entities/Student.php";
-require_once "../../entities/Teacher.php";
-require_once 'C:\Users\youco\Desktop\iLearN-platform\app\enums\Role.php';
+require_once "../../entities/Melophile.php";
+require_once "../../entities/Artist.php";
+require_once 'C:\Users\youco\Desktop\MEZZIKA\app\enums\Role.php';
 session_start();
 $userController = new UserControllerimpl();
 var_dump($_POST); 
@@ -22,12 +22,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit();
         }
 
-        if ($role === "student") {
+        if ($role === "user") {
             $role = Role::from($role);
-            $person = new Student($email, $hashed_password, $name, $role);
-        } elseif ($role === "teacher") {
+            $person = new Melophile($email, $hashed_password, $name, $role);
+        } elseif ($role === "artist") {
             $role = Role::from($role);
-            $person = new Teacher($email, $hashed_password, $name, $role);
+            $person = new Artist($email, $hashed_password, $name, $role);
         } else {
             echo "Type d'utilisateur invalide.";
             exit();
@@ -68,10 +68,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 case 'admin':
                 header("Location: ../../user/admin/dashbord.php");
                 break;
-                case 'student':
+                case 'user':
                 header("Location: ../../../index.php");
                 break;
-                case 'teacher':
+                case 'artist':
                     header("Location: ../../user/teacher/teacherDash.php");  
                     break;
              }
